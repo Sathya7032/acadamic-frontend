@@ -12,7 +12,7 @@ const SingleBlog = () => {
 
   const api = useAxios();
 
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const [post, setPost] = useState([]);
 
@@ -22,7 +22,7 @@ const SingleBlog = () => {
 
   useEffect(() => {
     axios
-      .get(baseUrl + `/blogs/${id}/`)
+      .get(baseUrl + `/blogs/?slug=${slug}/`)
       .then((response) => {
         setPost(response.data);
         console.log(response.data);
@@ -37,7 +37,7 @@ const SingleBlog = () => {
   useEffect(() => {
     async function fetchComments() {
       try {
-        const response = await axios.get(baseUrl + `/blogs/${id}/comments/`);
+        const response = await axios.get(baseUrl + `/blogs/?slug=${slug}/comments/`);
         setComments(response.data);
         console.log(response.data);
       } catch (error) {
@@ -55,7 +55,7 @@ const SingleBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post(baseUrl + `/blog/${id}/comment/create/`, {
+      const response = await api.post(baseUrl + `/blog/${post.slug}/comment/create/`, {
         content: content
       });
       console.log("Comment posted successfully:", response.data);
