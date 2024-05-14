@@ -88,7 +88,7 @@ const Blogs = () => {
                         <p><span style={{ color: 'tomato' }}>Views :- </span><span style={{ color: 'black' }}>{blog.views}</span></p>
 
                         <a
-                          href={`/blogs/${blog.id}/`}
+                          href={`/blogs/${blog.slug}/`}
                           className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2"
                         >
                           Continue Reading
