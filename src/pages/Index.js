@@ -184,7 +184,7 @@ export default function Index({ placeholder }) {
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
                     crossorigin="anonymous"></script>
                 <ins class="adsbygoogle"
-                    style="display:block"
+                    style={{display:'block'}}
                     data-ad-client="ca-pub-6919135852803356"
                     data-ad-slot="4480234004"
                     data-ad-format="auto"
@@ -298,9 +298,8 @@ export default function Index({ placeholder }) {
                 </div>
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
                     crossorigin="anonymous"></script>
-
                 <ins class="adsbygoogle"
-                    style="display:block"
+                    style={{display:'block'}}
                     data-ad-client="ca-pub-6919135852803356"
                     data-ad-slot="4480234004"
                     data-ad-format="auto"

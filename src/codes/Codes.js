@@ -32,16 +32,16 @@ const Codes = () => {
                     <Paper style={{ margin: 20, backgroundColor: "darkslategrey" }}>
                         <h2 style={{ textAlign: "center", color: 'white', padding: 10, textTransform: 'uppercase' }}>{topics.title}</h2>
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
-                            crossorigin="anonymous"></script>
-                        <ins class="adsbygoogle"
-                            style="display:block; text-align:center;"
-                            data-ad-layout="in-article"
-                            data-ad-format="fluid"
-                            data-ad-client="ca-pub-6919135852803356"
-                            data-ad-slot="9140112864"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({ });
-                        </script>
+                        crossorigin="anonymous"></script>
+                    <ins class="adsbygoogle"
+                        style={{display:"block",textAlign:"center"}}
+                        data-ad-layout="in-article"
+                        data-ad-format="fluid"
+                        data-ad-client="ca-pub-6919135852803356"
+                        data-ad-slot="9140112864"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({ });
+                    </script>
                     </Paper>
                     <Paper style={{ margin: 20, backgroundColor: "snow", padding: 20 }}>
                         <CodeDisplay code={topics.code} />
