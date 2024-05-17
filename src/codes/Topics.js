@@ -33,11 +33,7 @@ export default function Topics() {
                                 <div key={topic.id}>
                                     <a href={`/languages/${topic.id}/codes/`}>
                                         <li className='list-group-item'>
-<<<<<<< HEAD
-                                            <span style={{fontSize:15,color:'darkslategrey',textTransform:'uppercase',fontWeight:'bold'}}>{index+1}.  {topic.topic}</span>
-=======
                                             <span style={{fontSize:15,color:'darkslategrey',textTransform:'uppercase',fontWeight:'bold',padding:5}}>{index+1}.  {topic.topic}</span>
->>>>>>> a2d56e9085d9954f79adb1b03171744b96bf6c04
                                         </li>   
                                     </a>
                                 </div>
