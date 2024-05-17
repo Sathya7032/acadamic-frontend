@@ -1,4 +1,4 @@
-import Base from "./components/Base";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Contact from "./pages/Contact";
@@ -8,7 +8,6 @@ import TopicView from "./Tutorials/TopicView";
 import { AuthProvider } from "./context/AuthContext";
 import Blogs from "./blogs/Blogs";
 import SingleBlog from "./blogs/SingleBlog";
-import Memes from "./pages/Memes";
 import Languages from "./codes/Languages";
 import Topics from "./codes/Topics";
 import CodeTopics from "./codes/CodeTopics";
@@ -35,7 +34,6 @@ function App() {
             <Route element={<TopicView />} path="tutorials/posts/:id/" />
             <Route element={<Blogs />} path="/blogs" />
             <Route element={<SingleBlog />} path="blogs/:id/" />
-            <Route element={<Memes />} path="/memes" />
             <Route element={<Languages />} path="/languages" />
             <Route element={<Topics />} path="/topics/:id/" />
             <Route element={<CodeTopics />} path="languages/:id/codes" />

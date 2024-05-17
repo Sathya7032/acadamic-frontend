@@ -35,7 +35,6 @@ export default function Index({ placeholder }) {
     const [content, setContent] = useState("");
     const token = localStorage.getItem("authTokens");
     const [blogs, setBlogs] = useState([]);
-    const [memes, setMemes] = useState([]);
 
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -50,19 +49,7 @@ export default function Index({ placeholder }) {
         fetchBlogs();
     }, []);
 
-    useEffect(() => {
-        fetchMemes();
-    }, []);
-
-    const fetchMemes = async () => {
-        try {
-            const response = await axios.get(baseUrl + "/memes/");
-            console.log(response.data);
-            setMemes(response.data.slice(0, 3));
-        } catch (error) {
-            console.error("Error fetching memes:", error);
-        }
-    };
+  
 
 
     const handleCreatePost = async () => {
@@ -463,30 +450,6 @@ export default function Index({ placeholder }) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div className="container-fluid py-5">
-                    <div className="container pt-5 pb-3">
-                        <div className="text-center mb-5">
-                            <h5 className="text-primary text-uppercase mb-3" style={{ letterSpacing: "5px" }}>Our Memes</h5>
-                            <h1>Latest From Our Memes</h1>
-                        </div>
-                        <div className="row pb-3">
-                            {memes.map((meme) => (
-                                <div key={meme.id} className="col-lg-4 mb-4">
-                                    <div className="blog-item position-relative overflow-hidden rounded mb-2">
-                                        <img className="img-fluid" src={meme.images} alt="" />
-                                        <a className="blog-overlay text-decoration-none" href="">
-                                            <p className="text-primary m-0">{formatDate(meme.date)}</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            ))}
-
-
                         </div>
                     </div>
                 </div>

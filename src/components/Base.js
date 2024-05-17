@@ -81,7 +81,6 @@ const Base = ({ children }) => {
                                     <a href="/" className={`nav-item nav-link ${isActiveLink("/") ? "active" : ""}`}>Home</a>
                                     <a href="/tutorials" className={`nav-item nav-link ${isActiveLink("/tutorials") ? "active" : ""}`}>Tutorials</a>
                                     <a href="/blogs" className={`nav-item nav-link ${isActiveLink("/blogs") ? "active" : ""}`}>Blogs</a>
-                                    <a href="/memes" className={`nav-item nav-link ${isActiveLink("/memes") ? "active" : ""}`}>Memes</a>
                                     <a href="/languages" className={`nav-item nav-link ${isActiveLink("/languages") ? "active" : ""}`}>Code</a>
                                     <a href="/contact" className={`nav-item nav-link ${isActiveLink("/contact") ? "active" : ""}`}>Contact</a>
                                     {token ?(
@@ -127,7 +126,6 @@ const Base = ({ children }) => {
                                 <div className="d-flex flex-column justify-content-start">
                                     <a className="text-white mb-2" href="/blogs"><i className="fa fa-angle-right mr-2"></i>Blogs</a>
                                     <a className="text-white mb-2" href="/tutorials"><i className="fa fa-angle-right mr-2"></i>Tutorials</a>
-                                    <a className="text-white mb-2" href="/memes"><i className="fa fa-angle-right mr-2"></i>Memes</a>
                                     <a className="text-white mb-2" href="/languages"><i className="fa fa-angle-right mr-2"></i>Code Snippets</a>
                                     <a className="text-white" href="/contact"><i className="fa fa-angle-right mr-2"></i>Contact</a>
                                 </div>
