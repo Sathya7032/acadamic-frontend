@@ -34,6 +34,7 @@ const CodeDisplay = ({ code }) => {
       <pre style={{ background: "#f4f4f4", padding: 20, paddingTop: 50 }}>
         <code>{code}</code>
       </pre>
+      
 
       <iframe
         ref={iframeRef}

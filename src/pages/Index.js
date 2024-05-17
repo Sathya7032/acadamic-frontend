@@ -181,6 +181,17 @@ export default function Index({ placeholder }) {
                         </div>
                     </div>
                 </div>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
+                    crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-6919135852803356"
+                    data-ad-slot="4480234004"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({ });
+                </script>
 
 
                 <div className="container-fluid py-5">
@@ -285,6 +296,18 @@ export default function Index({ placeholder }) {
                         </div>
                     </div>
                 </div>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
+                    crossorigin="anonymous"></script>
+
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-6919135852803356"
+                    data-ad-slot="4480234004"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({ });
+                </script>
 
 
                 <div class="container-fluid py-5">

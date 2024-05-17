@@ -6,7 +6,7 @@ import { Paper } from "@mui/material";
 import ReactPlayer from "react-player";
 import useAxios from '../utils/useAxios';
 import { Card, CardMedia, Divider, Typography } from "@mui/material";
-import { TextField, Button} from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import '../styles/css/video.css'
 
 export default function TopicView() {
@@ -75,6 +75,8 @@ export default function TopicView() {
                         <h2 style={{ textAlign: "center" }}>{topics.post_title}</h2>
                     </Paper>
 
+
+
                     <center>
                         <ReactPlayer
                             url={topics.post_video}
@@ -83,6 +85,18 @@ export default function TopicView() {
                             controls={true}
                         />
                     </center>
+
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
+                        crossorigin="anonymous"></script>
+                    <ins class="adsbygoogle"
+                        style="display:block; text-align:center;"
+                        data-ad-layout="in-article"
+                        data-ad-format="fluid"
+                        data-ad-client="ca-pub-6919135852803356"
+                        data-ad-slot="9140112864"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({ });
+                    </script>
 
                     <Paper style={{ margin: 20, backgroundColor: "snow", padding: 20 }}>
                         <p dangerouslySetInnerHTML={{ __html: topics.post_content }}></p>
@@ -96,7 +110,7 @@ export default function TopicView() {
                             <div key={comment.id}>
                                 <Paper style={{ padding: 20, margin: 20 }}>
                                     <h6 className="text-dark">{comment.content}</h6>
-                                    <Divider/>
+                                    <Divider />
                                     <h6>
                                         Posted by:-{" "}
                                         <span style={{ color: "red" }}>

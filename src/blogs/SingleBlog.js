@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Base from "../components/Base";
 import { Card, CardMedia, Divider, Paper, Typography } from "@mui/material";
-import { TextField, Button} from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import useAxios from "../utils/useAxios";
 
 
@@ -18,7 +18,7 @@ const SingleBlog = () => {
 
   const token = localStorage.getItem("authTokens");
 
-  
+
 
   useEffect(() => {
     axios
@@ -69,11 +69,22 @@ const SingleBlog = () => {
   };
 
 
-  
+
   return (
     <div>
       <Base>
         <div className="m-5">
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
+            crossorigin="anonymous"></script>
+          <ins class="adsbygoogle"
+            style="display:block; text-align:center;"
+            data-ad-layout="in-article"
+            data-ad-format="fluid"
+            data-ad-client="ca-pub-6919135852803356"
+            data-ad-slot="9140112864"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({ });
+          </script>
           {post.map((posts) => (
             <div key={posts.id}>
               <Paper>
@@ -130,28 +141,28 @@ const SingleBlog = () => {
             ))}
           </ul>
 
-         
+
 
           {token ? (
-           <div>
-           <h2>Post a Comment</h2>
-           <form onSubmit={handleSubmit}>
-             <TextField
-               label="Comment"
-               variant="outlined"
-               margin="normal"
-               fullWidth
-               multiline
-               rows={4}
-               value={content}
-               onChange={handleChange}
-               required
-             />
-             <Button type="submit" variant="contained" color="primary">
-               Post Comment
-             </Button>
-           </form>
-         </div>
+            <div>
+              <h2>Post a Comment</h2>
+              <form onSubmit={handleSubmit}>
+                <TextField
+                  label="Comment"
+                  variant="outlined"
+                  margin="normal"
+                  fullWidth
+                  multiline
+                  rows={4}
+                  value={content}
+                  onChange={handleChange}
+                  required
+                />
+                <Button type="submit" variant="contained" color="primary">
+                  Post Comment
+                </Button>
+              </form>
+            </div>
           ) : (
             <div style={{ textAlign: "center" }}>
               <p>
