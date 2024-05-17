@@ -87,7 +87,7 @@ const Base = ({ children }) => {
                                     {token ?(
                                         <a href="/dashboard" className={`nav-item nav-link ${isActiveLink("/dashboard") ? "active" : ""}`}>Dashboard</a>
                                     ):(
-                                        <a href="/signin" className={`nav-item nav-link ${isActiveLink("/contact") ? "active" : ""}`}>Login</a>
+                                        <a href="/signin" className={`nav-item nav-link ${isActiveLink("/signin") ? "active" : ""}`}>Login</a>
                                     )}
                                 </div>
                                 {token ? (

@@ -114,7 +114,7 @@ const Blogs = () => {
             <button
               className="btn btn-secondary ml-2"
               onClick={handleNextPage}
-              disabled={currentPage === totalPages}
+              disabled={currentPage === currentPage+1}
             >
               Next
             </button>
