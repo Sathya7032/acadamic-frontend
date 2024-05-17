@@ -104,8 +104,8 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://acadamicfolio.info/">
+        AcadamicFolio
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -216,7 +216,7 @@ export default function Base1({ children }) {
               color="inherit"
               aria-label="open drawer"
               title="Items"
-             
+              onClick={toggleDrawer} // Add this line
               sx={{
                 marginRight: "36px",
                 ...(open && { display: "none" }),
@@ -250,7 +250,7 @@ export default function Base1({ children }) {
               onClose={handleMenuClose}
             >
               <MenuItem onClick={handleMenuClose}>
-                <a onClick= {logoutUser} >Logout</a>
+                <a onClick={logoutUser}>Logout</a>
               </MenuItem>
             </Menu>
           </Toolbar>

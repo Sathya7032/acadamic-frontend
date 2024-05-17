@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 export default function TutorialTopics() {
-    const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+    const baseUrl = "https://www.acadamicfolio.online/app";
 
     const { id } = useParams();
 
@@ -34,7 +34,7 @@ export default function TutorialTopics() {
                                 <div key={topic.post_id}>
                                     <a href={`/tutorials/posts/${topic.post_id}`}>
                                         <li className='list-group-item'>
-                                            <span style={{fontSize:30,color:'darkslategrey'}}>{index+1}.  {topic.post_title}</span>
+                                            <span style={{fontSize:20,color:'darkslategrey'}}>{index+1}.  {topic.post_title}</span>
                                         </li>
                                         
                                     </a>

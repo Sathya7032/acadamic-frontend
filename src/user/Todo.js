@@ -7,7 +7,7 @@ import { Delete, Done } from "@mui/icons-material";
 import Base1 from "./Base1";
 
 const Todo = () => {
-  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+  const baseUrl = "https://www.acadamicfolio.online/app";
   const api = useAxios();
 
   const token = localStorage.getItem("authTokens");

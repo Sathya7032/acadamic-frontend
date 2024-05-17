@@ -3,7 +3,7 @@ import Base from "../components/Base";
 import axios from "axios";
 
 const Memes = () => {
-    const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+    const baseUrl = "https://www.acadamicfolio.online/app";
 
     const [memes, setMemes] = useState([]);
 

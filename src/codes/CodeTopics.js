@@ -5,7 +5,7 @@ import axios from "axios";
 import { Divider, List, ListItem, Paper, Typography } from "@mui/material";
 
 const CodeTopics = () => {
-  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+  const baseUrl = "https://www.acadamicfolio.online/app";
 
   const { id } = useParams();
 
@@ -36,7 +36,7 @@ const CodeTopics = () => {
                 <div key={code.id}>
                   <a href={`/languages/codes/${code.code_id}/`}>
                     <li>
-                      <span style={{fontSize:25,color:'darkslategrey',fontWeight:'bolder'}}>{index + 1}.     {code.title}</span>
+                      <span style={{fontSize:15,color:'darkslategrey',fontWeight:'bolder'}}>{index + 1}.     {code.title}</span>
                     </li>
                   </a>
                   <Divider />

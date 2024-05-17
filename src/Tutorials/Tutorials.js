@@ -3,7 +3,7 @@ import axios from 'axios'
 import Base from '../components/Base';
 
 export default function Tutorials() {
-  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+  const baseUrl = "https://www.acadamicfolio.online/app";
 
   const [tutorials, setTutorials] = useState([]);
   useEffect(() => {
@@ -33,12 +33,12 @@ export default function Tutorials() {
         </div>
 
 
-        <div class="container-fluid py-5">
-          <div class="container py-5">
+        <div class="container-fluid py-6">
+          <div class="container py-6">
           
             <div class="row">
             {tutorials.map((tutorial, index) => (
-              <div key={index} class="col-lg-4 col-md-6 mb-4">
+              <div key={index} class="col-lg-4 col-md-5 mb-2">
                 <div class="rounded overflow-hidden mb-2">
                 <img class="img-fluid" src={tutorial.tutorialImage} alt=""/>
                   <div class="bg-secondary p-4">

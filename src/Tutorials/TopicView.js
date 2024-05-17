@@ -10,7 +10,7 @@ import { TextField, Button} from "@mui/material";
 import '../styles/css/video.css'
 
 export default function TopicView() {
-    const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+    const baseUrl = "https://www.acadamicfolio.online/app";
 
     const { id } = useParams();
     const api = useAxios();

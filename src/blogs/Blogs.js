@@ -4,7 +4,7 @@ import axios from "axios";
 import moment from "moment";
 
 const Blogs = () => {
-  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+  const baseUrl = "https://www.acadamicfolio.online/app";
 
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);

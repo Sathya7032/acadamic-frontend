@@ -29,7 +29,7 @@ import axios from 'axios'
 
 
 export default function Index({ placeholder }) {
-    const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+    const baseUrl = "hhttps://www.acadamicfolio.online/app";
     const api = useAxios();
     const navigate = useNavigate();
     const [content, setContent] = useState("");
