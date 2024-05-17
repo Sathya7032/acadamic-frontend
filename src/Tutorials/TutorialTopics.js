@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 export default function TutorialTopics() {
-    const baseUrl = "https://www.acadamicfolio.online/app";
+    const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
 
     const { id } = useParams();
 

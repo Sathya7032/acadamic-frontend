@@ -19,7 +19,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Base1 from "./Base1";
 const Dashboard = () => {
   const api = useAxios();
-  const baseUrl = "https://www.acadamicfolio.online/app";
+  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
   const token = localStorage.getItem("authTokens");
 
   if (token) {

@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext"
 
-const baseURL = "https://www.acadamicfolio.online/app";
+const baseURL = "https://acadamicfolios.pythonanywhere.com/app";
 
 const useAxios = () => {
   const { authTokens, setUser, setAuthTokens } = useContext(AuthContext);
