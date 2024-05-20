@@ -97,16 +97,7 @@ export const AuthProvider = ({ children }) => {
             })
         } else {
             console.log(response.status);
-            console.log("there was a server issue");
-            swal.fire({
-                title: "email already exists " + response.status,
-                icon: "error",
-                toast: true,
-                timer: 6000,
-                position: 'center',
-                timerProgressBar: true,
-                showConfirmButton: false,
-            })
+            console.log("there was a server issue")
         }
     }
 
