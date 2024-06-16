@@ -24,16 +24,16 @@ function validateUsername(username) {
 }
 
 function validatePassword(password) {
-    // Basic password validation (min length 6)
-    return password.length >= 6;
+    // Password validation: min 6 characters, at least one uppercase letter, one number, and one symbol
+    return /^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$/.test(password);
 }
 
 function validateForm(email, username, password, password2) {
     return {
-        email: email.trim() !== '' ? validateEmail(email) : null, // Check if email is valid and not empty
-        username: username.trim() !== '' ? validateUsername(username) : null, // Check if username is valid and not empty
-        password: password.trim() !== '' ? validatePassword(password) : null, // Check if password is valid and not empty
-        password2: password2.trim() !== '' ? password === password2 : null, // Check if password2 matches password and not empty
+        email: email.trim() !== '' ? validateEmail(email) : false, // Check if email is valid and not empty
+        username: username.trim() !== '' ? validateUsername(username) : false, // Check if username is valid and not empty
+        password: password.trim() !== '' ? validatePassword(password) : false, // Check if password is valid and not empty
+        password2: password2.trim() !== '' ? password === password2 : false, // Check if password2 matches password and not empty
     };
 }
 
@@ -139,7 +139,7 @@ export default function SignUp() {
                                     value={password}
                                     onChange={handlePasswordChange}
                                     error={formErrors.password === false}
-                                    helperText={formErrors.password === false ? "Password must be at least 6 characters long" : ""}
+                                    helperText={formErrors.password === false ? "Password must be at least 6 characters long and contain one uppercase letter, one number, and one symbol" : ""}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -188,4 +188,4 @@ export default function SignUp() {
             </Container>
         </ThemeProvider>
     );
-}
+        }
