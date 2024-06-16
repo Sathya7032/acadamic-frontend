@@ -5,7 +5,7 @@ import axios from "axios";
 import { Divider, List, ListItem, Paper, Typography } from "@mui/material";
 
 const CodeTopics = () => {
-  const baseUrl = "https://acadamicfolio.online/app";
+  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
 
   const { id } = useParams();
 

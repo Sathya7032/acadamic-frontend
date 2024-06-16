@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 const Languages = () => {
-    const baseUrl = "https://acadamicfolio.online/app";
+    const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
 
     const [lang, setLang] = useState([]);
     useEffect(() => {

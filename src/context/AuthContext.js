@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     const history = useNavigate();
 
     const loginUser = async (email, password) => {
-        const response = await fetch("https://acadamicfolio.online/app/token/", {
+        const response = await fetch("https://acadamicfolios.pythonanywhere.com/app/token/", {
             method: "POST",
             headers:{
                 "Content-Type":"application/json"
@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
    
      
     const registerUser = async (email, username, password, password2) => {
-        const response = await fetch("https://acadamicfolio.online/app/register/", {
+        const response = await fetch("https://acadamicfolios.pythonanywhere.com/app/register/", {
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
