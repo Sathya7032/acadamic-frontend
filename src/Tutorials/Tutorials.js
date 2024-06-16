@@ -11,7 +11,11 @@ export default function Tutorials() {
   }, []);
 
   const fetchTodos = async () => {
-    await axios.get(baseUrl + "/tutorials/").then((res) => {
+    await axios.get(baseUrl + "/tutorials/",{
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+    }).then((res) => {
       console.log(res.data);
       setTutorials(res.data);
     });
