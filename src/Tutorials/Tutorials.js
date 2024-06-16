@@ -14,7 +14,7 @@ export default function Tutorials() {
     await axios.get(baseUrl + "/tutorials/",{
     method: 'GET',
     headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json',},
     }).then((res) => {
       console.log(res.data);
       setTutorials(res.data);
