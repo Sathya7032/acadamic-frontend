@@ -60,7 +60,7 @@ export default function SignIn() {
 
   const reachGoogle = () => {
     const clientID = "290336876059-u0nmtqck47t6bluo76b2jn18i9e2bdgb.apps.googleusercontent.com";
-    const callBackURI = "http://localhost:3000/dashboard";
+    const callBackURI = "https://acadamicfolio.info/dashboard";
     window.location.replace(`https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=${callBackURI}&prompt=consent&response_type=code&client_id=${clientID}&scope=openid%20email%20profile&access_type=offline`)
 }
 
