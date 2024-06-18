@@ -78,6 +78,24 @@ export default function SignUp() {
             registerUser(email, username, password, password2);
         }
     };
+    const handleLoginSuccess = async (response) => {
+    try {
+      const res = await axios.post('https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login', {
+        token: response.credential,  // The token from Google
+      });
+
+      if (res.data.key) {
+        // Store the token and manage the session
+        localStorage.setItem('token', res.data.key);
+        // Redirect or update UI based on login
+        window.location.href = '/dashboard';  // Update as necessary
+      } else {
+        console.error('Login failed:', res.data);
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
 
     return (
         <ThemeProvider theme={defaultTheme}>
