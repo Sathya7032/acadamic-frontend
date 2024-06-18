@@ -13,13 +13,15 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AuthContext from '../context/AuthContext';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        <h3><span style={{color:'black'}}>Academic</span><span style={{color:'tomato'}}>Folio</span></h3>
+        <h3><span style={{ color: 'black' }}>Academic</span><span style={{ color: 'tomato' }}>Folio</span></h3>
       </Link>{' '}
     </Typography>
   );
@@ -30,7 +32,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn() {
- 
+
 
   const { loginUser } = React.useContext(AuthContext);
   const handleSubmits = (e) => {
@@ -43,6 +45,26 @@ export default function SignIn() {
     console.log(email);
     console.log(password);
   };
+
+  const handleLoginSuccess = async (response) => {
+    try {
+      const res = await axios.post('http://acadamicfolios.pythonanywhere.com/dj-rest-auth/google/', {
+        access_token: response.credential,  // The token from Google
+      });
+      // Store the token or user info as needed
+      console.log('Logged in:', res.data);
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
+
+  const reachGoogle = () => {
+    const clientID = "290336876059-u0nmtqck47t6bluo76b2jn18i9e2bdgb.apps.googleusercontent.com";
+    const callBackURI = "http://localhost:3000/dashboard";
+    window.location.replace(`https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=${callBackURI}&prompt=consent&response_type=code&client_id=${clientID}&scope=openid%20email%20profile&access_type=offline`)
+}
+
+
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -62,6 +84,15 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          <GoogleOAuthProvider clientId="290336876059-u0nmtqck47t6bluo76b2jn18i9e2bdgb.apps.googleusercontent.com">
+            <div>
+              <h2>Login with Google</h2>
+              <GoogleLogin
+                onSuccess={reachGoogle}
+                onError={() => console.log('Login Failed')}
+              />
+            </div>
+          </GoogleOAuthProvider>
           <Box component="form" onSubmit={handleSubmits} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -109,6 +140,7 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
+
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
