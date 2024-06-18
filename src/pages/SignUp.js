@@ -99,6 +99,10 @@ export default function SignUp() {
     }
   };
 
+     const handleLogin = () => {
+    window.location.href = 'https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login';
+  };
+
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
@@ -121,7 +125,7 @@ export default function SignUp() {
             <div>
               <h2>Login with Google</h2>
               <GoogleLogin
-                onSuccess={handleLoginSuccess}
+                onSuccess={handleLogin}
                 onError={() => console.log('Login Failed')}
               />
             </div>
