@@ -62,6 +62,10 @@ export default function SignIn() {
     }
   };
 
+  const handleLogin = () => {
+    window.location.href = 'https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login';
+  };
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -89,6 +93,9 @@ export default function SignIn() {
               />
             </div>
           </GoogleOAuthProvider>
+                  <button onClick={handleLogin}>
+      Login with Google
+    </button>
           <Box component="form" onSubmit={handleSubmits} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
