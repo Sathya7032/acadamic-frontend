@@ -45,7 +45,7 @@ export default function SignIn() {
 
   const handleLoginSuccess = async (response) => {
     try {
-      const res = await axios.post('http://acadamicfolios.pythonanywhere.com/accounts/google/login/token/', {
+      const res = await axios.post('https://acadamicfolios.pythonanywhere.com/accounts/google/login/token/', {
         token: response.credential,  // The token from Google
       });
 
