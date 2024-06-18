@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AuthContext from '../context/AuthContext';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '@mui/material';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 function validateEmail(email) {
     // Basic email validation
