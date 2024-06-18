@@ -12,9 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import AuthContext from '../context/AuthContext';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
+import AuthContext from '../context/AuthContext';
 
 function Copyright(props) {
   return (
@@ -23,47 +23,50 @@ function Copyright(props) {
       <Link color="inherit" href="https://mui.com/">
         <h3><span style={{ color: 'black' }}>Academic</span><span style={{ color: 'tomato' }}>Folio</span></h3>
       </Link>{' '}
+      {new Date().getFullYear()}
     </Typography>
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-
-
   const { loginUser } = React.useContext(AuthContext);
+
   const handleSubmits = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    email.length > 0 && loginUser(email, password);
-
-    console.log(email);
-    console.log(password);
+    if (email.length > 0 && password.length > 0) {
+      loginUser(email, password);
+    }
   };
 
   const handleLoginSuccess = async (response) => {
     try {
-      const res = await axios.post('http://acadamicfolios.pythonanywhere.com/dj-rest-auth/google/', {
-        access_token: response.credential,  // The token from Google
+      const res = await axios.post('https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login', {
+        token: response.credential,  // The token from Google
       });
-      // Store the token or user info as needed
-      console.log('Logged in:', res.data);
+
+      if (res.data.key) {
+        // Store the token and manage the session
+        localStorage.setItem('token', res.data.key);
+        // Redirect or update UI based on login
+        window.location.href = '/dashboard';  // Update as necessary
+      } else {
+        console.error('Login failed:', res.data);
+      }
     } catch (error) {
       console.error('Login failed:', error);
     }
   };
 
-  const reachGoogle = () => {
-    const clientID = "290336876059-u0nmtqck47t6bluo76b2jn18i9e2bdgb.apps.googleusercontent.com";
-    const callBackURI = "https://acadamicfolio.info/dashboard";
-    window.location.replace(`https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=${callBackURI}&prompt=consent&response_type=code&client_id=${clientID}&scope=openid%20email%20profile&access_type=offline`)
-}
 
+
+  const handleLogin = () => {
+    window.location.href = 'https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login';
+  };
 
 
   return (
@@ -88,11 +91,14 @@ export default function SignIn() {
             <div>
               <h2>Login with Google</h2>
               <GoogleLogin
-                onSuccess={reachGoogle}
+                onSuccess={handleLoginSuccess}
                 onError={() => console.log('Login Failed')}
               />
             </div>
           </GoogleOAuthProvider>
+                  <button onClick={handleLogin}>
+      Login with Google
+    </button>
           <Box component="form" onSubmit={handleSubmits} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -140,7 +146,6 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
