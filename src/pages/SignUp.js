@@ -116,6 +116,15 @@ export default function SignUp() {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
+                    <GoogleOAuthProvider clientId="290336876059-u0nmtqck47t6bluo76b2jn18i9e2bdgb.apps.googleusercontent.com">
+            <div>
+              <h2>Login with Google</h2>
+              <GoogleLogin
+                onSuccess={handleLoginSuccess}
+                onError={() => console.log('Login Failed')}
+              />
+            </div>
+          </GoogleOAuthProvider>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
