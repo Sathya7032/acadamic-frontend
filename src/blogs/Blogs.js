@@ -2,25 +2,37 @@ import React, { useState, useEffect } from "react";
 import Base from "../components/Base";
 import axios from "axios";
 import moment from "moment";
+import { Divider } from "@mui/material";
 
 const Blogs = () => {
   const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
-
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [query, setQuery] = useState(""); // State to hold search query
 
   useEffect(() => {
     fetchBlogs();
-  }, [currentPage]);
+  }, [currentPage, query]); // Fetch blogs on page or query change
 
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${baseUrl}/blogs/?page=${currentPage}`);
+      const response = await axios.get(`${baseUrl}/blogs/`, {
+        params: {
+          page: currentPage,
+          query: query.trim() // Include query parameter if it's not empty
+        }
+      });
       setBlogs(response.data.results);
-      setTotalPages(response.data.count);
+
+      // Assuming the API response includes a count field indicating the total number of blog entries
+      const totalEntries = response.data.count;
+
+      // Assuming each page returns 10 entries, calculate total pages
+      const entriesPerPage = 10;
+      setTotalPages(Math.ceil(totalEntries / entriesPerPage));
     } catch (error) {
       console.error("Error fetching blogs:", error);
     }
@@ -37,6 +49,18 @@ const Blogs = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
     }
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setCurrentPage(1); // Reset to first page on new search
+    fetchBlogs(); // Fetch blogs with the current query
+  };
+
+  const clearSearch = () => {
+    setQuery(""); // Clear the search query
+    setCurrentPage(1); // Reset to first page when clearing search
+    fetchBlogs(); // Fetch all blogs without search query
   };
 
   return (
@@ -56,47 +80,48 @@ const Blogs = () => {
         </div>
 
         <div className="container">
+          {/* Search form */}
+          <form onSubmit={handleSearch} className="mb-4">
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search blogs..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              <div className="input-group-append">
+                <button className="btn btn-primary" type="submit">Search</button>
+              </div>
+              {query && (
+                <div className="input-group-append">
+                  <button className="btn btn-secondary" onClick={clearSearch} type="button">Clear</button>
+                </div>
+              )}
+            </div>
+          </form>
+
           <div className="row">
             {loading ? (
               <div>Loading...</div>
             ) : (
               <>
-                {blogs.map((blog) => (
-                  <div key={blog.id} className="col-lg-12 mb-5">
-                    <div className="blog-item" style={{ border: 'black solid' }}>
-                      <img
-                        src="images/blog/2.jpg"
-                        alt=""
-                        className="img-fluid rounded"
-                      />
-
-                      <div className="blog-item-content bg-white p-4">
-                        <div className="blog-item-meta py-1 px-2">
-                          <span className="text-muted text-capitalize mr-3">
-                            <i className="ti-pencil-alt mr-2"></i>{moment(blog.date).format("DD-MMMM-YYYY")}
-                          </span>
-                        </div>
-
-                        <h3 className="mt-3 mb-3">
-                          <a href="blog-single.html">
-                            {blog.title}
-                          </a>
-                        </h3>
-                        <p className="mb-4" dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 400) }}>
-                        </p>
-
-                        <p><span style={{ color: 'tomato' }}>Views :- </span><span style={{ color: 'black' }}>{blog.views}</span></p>
-
-                        <a
-                          href={`/blogs/${blog.id}/`}
-                          className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2"
-                        >
+                <div className="mt-4">
+                  {blogs.map((blog) => (
+                    <div key={blog.id} className="card mb-3">
+                      <div className="card-body">
+                        <h3 className="card-title">{blog.title}</h3>
+                        <Divider />
+                        <p className="card-text" dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 400) }} />
+                        <p className="card-text"><small className="text-muted">Views: {blog.views}</small></p>
+                        <p className="card-text"><small className="text-muted">{moment(blog.date).format("DD-MMMM-YYYY")}</small></p>
+                        <a href={`/blogs/${blog.id}/`} className="btn btn-primary" rel="noopener noreferrer">
                           Continue Reading
                         </a>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </>
             )}
           </div>
@@ -114,7 +139,7 @@ const Blogs = () => {
             <button
               className="btn btn-secondary ml-2"
               onClick={handleNextPage}
-              disabled={currentPage === currentPage+1}
+              disabled={currentPage === totalPages}
             >
               Next
             </button>

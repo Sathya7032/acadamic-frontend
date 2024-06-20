@@ -81,27 +81,27 @@ export default function SignUp() {
         }
     };
     const handleLoginSuccess = async (response) => {
-    try {
-      const res = await axios.post('https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login', {
-        token: response.credential,  // The token from Google
-      });
+        try {
+            const res = await axios.post('https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login', {
+                token: response.credential,  // The token from Google
+            });
 
-      if (res.data.key) {
-        // Store the token and manage the session
-        localStorage.setItem('token', res.data.key);
-        // Redirect or update UI based on login
-        window.location.href = '/dashboard';  // Update as necessary
-      } else {
-        console.error('Login failed:', res.data);
-      }
-    } catch (error) {
-      console.error('Login failed:', error);
-    }
-  };
+            if (res.data.key) {
+                // Store the token and manage the session
+                localStorage.setItem('token', res.data.key);
+                // Redirect or update UI based on login
+                window.location.href = '/dashboard';  // Update as necessary
+            } else {
+                console.error('Login failed:', res.data);
+            }
+        } catch (error) {
+            console.error('Login failed:', error);
+        }
+    };
 
-     const handleLogin = () => {
-    window.location.href = 'https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login';
-  };
+    const handleLogin = () => {
+        window.location.href = 'https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login';
+    };
 
     return (
         <ThemeProvider theme={defaultTheme}>
@@ -122,14 +122,14 @@ export default function SignUp() {
                         Sign up
                     </Typography>
                     <GoogleOAuthProvider clientId="290336876059-u0nmtqck47t6bluo76b2jn18i9e2bdgb.apps.googleusercontent.com">
-            <div>
-              <h2>Login with Google</h2>
-              <GoogleLogin
-                onSuccess={handleLogin}
-                onError={() => console.log('Login Failed')}
-              />
-            </div>
-          </GoogleOAuthProvider>
+                        <div>
+                            <h2>Login with Google</h2>
+                            <GoogleLogin
+                                onSuccess={handleLogin}
+                                onError={() => console.log('Login Failed')}
+                            />
+                        </div>
+                    </GoogleOAuthProvider>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
@@ -221,4 +221,4 @@ export default function SignUp() {
             </Container>
         </ThemeProvider>
     );
-        }
+}

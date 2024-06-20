@@ -17,6 +17,9 @@ import { jwtDecode } from "jwt-decode";
 import useAxios from "../utils/useAxios";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Base1 from "./Base1";
+
+
+
 const Dashboard = () => {
   const api = useAxios();
   const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";

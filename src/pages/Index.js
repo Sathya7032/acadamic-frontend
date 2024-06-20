@@ -39,7 +39,7 @@ export default function Index({ placeholder }) {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await axios.get(baseUrl + '/blogsView/'); // Update the API endpoint accordingly
+                const response = await axios.get(baseUrl + '/blogsindex/'); // Update the API endpoint accordingly
                 setBlogs(response.data.slice(0, 6)); // Slice the response to get the first 6 blogs
             } catch (error) {
                 console.error('Error fetching blogs:', error);

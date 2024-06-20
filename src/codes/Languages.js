@@ -34,16 +34,14 @@ const Languages = () => {
                         </div>
                     </div>
 
-                    <section class="section blog-wrap bg-gray">
-                        <div class="container">
+                    <div class="container-fluid py-6">
+                        <div class="container py-6">
                             <div class="row">
 
                                 {lang.map((langs, index) => (
-                                    <div key={langs.id} className="col-lg-4 col-md-4 mb-5" style={{ border: 'black solid 1px', margin: 3, backgroundColor: 'darkslategrey', borderRadius: 15, textTransform: 'uppercase' }}>
-                                        <div className="blog-item">
-
-
-                                            <div className="blog-item-content p-4">
+                                    <div key={langs.id} className="col-lg-5 col-md-4 mb-2 " style={{ border: 'black solid 1px', margin: 1 , backgroundColor: 'darkslategrey', borderRadius: 15, textTransform: 'uppercase' }}>
+                                        <div className="blog-item m-3">
+                                            <div className="blog-item-content p-3">
                                                 <h3 className="mt-3 mb-3">
                                                     <a href={`/topics/${langs.id}/`}>
                                                         {index+1}.  {langs.language}
@@ -62,7 +60,7 @@ const Languages = () => {
 
                             </div>
                         </div>
-                    </section>
+                    </div>
 
                 </div>
             </Base>

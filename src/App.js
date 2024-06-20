@@ -19,6 +19,10 @@ import Todo from "./user/Todo"
 import PrivateRoute from './utils/PrivateRoute'
 import SignUp from "./pages/SignUp";
 import BlogPost from "./user/BlogPost";
+import TestLanguages from "./Tests/TestLanguages";
+import TestTopics from "./Tests/TestTopics";
+import Test from "./Tests/Test";
+import Shorts from "./blogs/Shorts";
 
 
 function App() {
@@ -40,11 +44,15 @@ function App() {
             <Route element={<Codes />} path="languages/codes/:id/" />
             <Route element={<SignIn />} path="signin" />
             <Route element={<SignUp />} path="signup" />
+            <Route element={<Shorts />} path="shorts" />
             <Route element={<PrivateRoute />}>
               <Route element={<Dashboard />} path="dashboard" />
               <Route element={<YourBlogs />} path="your_blogs" />
               <Route element={<Todo />} path="todo" />           
-              <Route element={<BlogPost />} path="postBlog" />           
+              <Route element={<BlogPost />} path="postBlog" />     
+              <Route element={<TestLanguages/>} path="tests"/>     
+              <Route element={<TestTopics/>} path="testtopics/:id/"/>  
+              <Route element={<Test/>} path="test/:id/"/> 
             </Route>
           </Routes>
         </AuthProvider>

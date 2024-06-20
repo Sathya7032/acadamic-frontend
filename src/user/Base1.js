@@ -13,6 +13,7 @@ import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
+import QuizIcon from '@mui/icons-material/Quiz';
 import {
   ListItem,
   ListItemButton,
@@ -334,6 +335,28 @@ export default function Base1({ children }) {
                   <ListAlt />
                 </ListItemIcon>
                 <ListItemText primary="Todo" color="black" />
+              </ListItemButton>
+            </ListItem>
+            <Divider sx={{ my: 1 }} />
+            <ListItem disablePadding>
+              <ListItemButton
+                component="a"
+                href="/tests/"
+                sx={{
+                  backgroundColor: isActiveLink("/tests/")
+                    ? "#CCCCFF"
+                    : "initial", // set your active color
+                  borderRadius: "10px",
+                  "&:hover": {
+                    backgroundColor: "#CCCCFF",
+                    borderRadius: "10px",
+                  },
+                }}
+              >
+                <ListItemIcon>
+                  <QuizIcon />
+                </ListItemIcon>
+                <ListItemText primary="Take Test" color="black" />
               </ListItemButton>
             </ListItem>
             <Divider sx={{ my: 1 }} />
