@@ -1,114 +1,88 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Container, Typography, TextField, Button, Grid } from '@mui/material';
+import React from 'react'
+import Base1 from "./Base1";
+import '../styles/css/profile.css'
 
 const Profile = () => {
-    const [profiles, setProfiles] = useState([]);
-    const [formData, setFormData] = useState({
-        full_name: '',
-        bio: '',
-        role: '',
-        gitlink: '',
-    });
-
-    useEffect(() => {
-        fetchProfiles();
-    }, []);
-
-    const fetchProfiles = async () => {
-        try {
-            const response = await axios.get('https://acadamicfolios.pythonanywhere.com/app/profiles/');
-            setProfiles(response.data);
-        } catch (error) {
-            console.error('Error fetching profiles:', error);
-        }
-    };
-
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('https://acadamicfolios.pythonanywhere.com/app/profiles/', formData);
-            setProfiles([...profiles, response.data]);
-            setFormData({ full_name: '', bio: '', role: '', gitlink: '' }); // Clear form after submission
-        } catch (error) {
-            console.error('Error creating profile:', error);
-        }
-    };
-
-    const handleDelete = async (id) => {
-        try {
-            await axios.delete(`/api/profiles/${id}/`);
-            setProfiles(profiles.filter(profile => profile.id !== id));
-        } catch (error) {
-            console.error('Error deleting profile:', error);
-        }
-    };
-
     return (
-        <Container maxWidth="md">
-            <Typography variant="h4" gutterBottom>Profile Management</Typography>
-            <form onSubmit={handleSubmit}>
-                <Grid container spacing={2}>
-                    <Grid item xs={6}>
-                        <TextField
-                            fullWidth
-                            label="Full Name"
-                            name="full_name"
-                            value={formData.full_name}
-                            onChange={handleChange}
-                        />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField
-                            fullWidth
-                            label="Bio"
-                            name="bio"
-                            value={formData.bio}
-                            onChange={handleChange}
-                        />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField
-                            fullWidth
-                            label="Role"
-                            name="role"
-                            value={formData.role}
-                            onChange={handleChange}
-                        />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField
-                            fullWidth
-                            label="Git Link"
-                            name="gitlink"
-                            value={formData.gitlink}
-                            onChange={handleChange}
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Button type="submit" variant="contained" color="primary">Create Profile</Button>
-                    </Grid>
-                </Grid>
-            </form>
-            <Grid container spacing={2} style={{ marginTop: '20px' }}>
-                {profiles.map(profile => (
-                    <Grid item key={profile.id} xs={12} sm={6} md={4}>
-                        <div style={{ border: '1px solid #ccc', padding: '10px' }}>
-                            <Typography variant="h6">{profile.full_name}</Typography>
-                            <Typography variant="body2">{profile.bio}</Typography>
-                            <Typography variant="body2">{profile.role}</Typography>
-                            <Typography variant="body2"><a href={profile.gitlink} target="_blank" rel="noopener noreferrer">{profile.gitlink}</a></Typography>
-                            <Button variant="outlined" color="secondary" onClick={() => handleDelete(profile.id)}>Delete</Button>
-                        </div>
-                    </Grid>
-                ))}
-            </Grid>
-        </Container>
-    );
-};
+        <div>
+            <Base1>
+                <div className="container">
+                    <div className="main-body">
+                        {/* Breadcrumb */}
+                        <nav aria-label="breadcrumb" className="main-breadcrumb">
+                            <ol className="breadcrumb">
+                                <li className="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li className="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
+                                <li className="breadcrumb-item active" aria-current="page">User Profile</li>
+                            </ol>
+                        </nav>
 
-export default Profile;
+                        <div className="row gutters-sm">
+                            {/* Profile Card */}
+                            <div className="col-md-4 mb-3">
+                                <div className="card">
+                                    <div className="card-body">
+                                        <div className="d-flex flex-column align-items-center text-center">
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
+                                            <div className="mt-3">
+                                                <h4>John Doe</h4>
+                                                <p className="text-secondary mb-1">Full Stack Developer</p>
+                                                <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                                                <button className="btn btn-primary">Follow</button>
+                                                <button className="btn btn-outline-primary">Message</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* Social Links */}
+                                <div className="card mt-3">
+                                    <ul className="list-group list-group-flush">
+                                        <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                            <h6 className="mb-0">Website</h6>
+                                            <span className="text-secondary">https://bootdey.com</span>
+                                        </li>
+                                        {/* Add other list items for GitHub, Twitter, Instagram, Facebook */}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            {/* Profile Details and Project Status */}
+                            <div className="col-md-8">
+                                {/* Profile Details */}
+                                <div className="card mb-3">
+                                    <div className="card-body">
+                                        <div className="row">
+                                            <div className="col-sm-3">
+                                                <h6 className="mb-0">Full Name</h6>
+                                            </div>
+                                            <div className="col-sm-9 text-secondary">
+                                                Kenneth Valdez
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        {/* Add other profile details like Email, Phone, etc. */}
+                                    </div>
+                                </div>
+
+                                {/* Project Status */}
+                                <div className="row gutters-sm">
+                                    <div className="col-sm-6 mb-3">
+                                        <div className="card h-100">
+                                            <div className="card-body">
+                                                <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">assignment</i>Project Status</h6>
+                                                {/* Render project status details */}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* Add another col-sm-6 card for the second project status */}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Base1>
+        </div>
+    )
+}
+
+export default Profile
