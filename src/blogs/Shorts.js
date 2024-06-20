@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Base from '../components/Base';
-import '../styles/css/shorts.css'; // Custom CSS file for styling
+import Base from '../components/Base'; // Assuming Base is your layout component
+import '../styles/css/shorts.css';
 
-const App = () => {
+
+const Shorts = () => {
     const [categories, setCategories] = useState([]);
     const [videos, setVideos] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
-    const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
     useEffect(() => {
+        // Fetch categories from API
         axios.get('https://acadamicfolios.pythonanywhere.com/app/api/categories/')
             .then(response => {
                 setCategories(response.data);
             })
             .catch(error => {
-                console.error("There was an error fetching the categories!", error);
+                console.error("Error fetching categories:", error);
             });
     }, []);
 
     useEffect(() => {
+        // Fetch videos based on selected category from API
         let url = 'https://acadamicfolios.pythonanywhere.com/app/api/shorts/';
         if (selectedCategory) {
             url += `?category_id=${selectedCategory}`;
@@ -28,29 +30,14 @@ const App = () => {
         axios.get(url)
             .then(response => {
                 setVideos(response.data);
-                setCurrentVideoIndex(0); // Reset to the first video when category changes
             })
             .catch(error => {
-                console.error("There was an error fetching the videos!", error);
+                console.error("Error fetching videos:", error);
             });
     }, [selectedCategory]);
 
-    const handleNext = () => {
-        if (videos.length > 0) {
-            setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
-        }
-    };
-
-    const handlePrevious = () => {
-        if (videos.length > 0) {
-            setCurrentVideoIndex((prevIndex) => (prevIndex - 1 + videos.length) % videos.length);
-        }
-    };
-
-    const currentVideo = videos[currentVideoIndex];
-
     return (
-        <Base>
+        <Base> {/* Assuming Base is your layout component */}
             <div className="container-fluid page-header" style={{ marginBottom: "90px" }}>
                 <div className="container">
                     <div className="d-flex flex-column justify-content-center" style={{ minHeight: "300px" }}>
@@ -67,11 +54,11 @@ const App = () => {
             <div className="container mt-4">
                 <h1 className="mb-4">Video Library</h1>
                 {/* Category Selector */}
-                <div className="form-group mb-4">
-                    <label htmlFor="categorySelect">Select Category:</label>
+                <div className="custom-select-container mb-4">
+                    <label className="custom-select-label" htmlFor="categorySelect">Select Category:</label>
                     <select
                         id="categorySelect"
-                        className="form-select"
+                        className="custom-select"
                         onChange={e => setSelectedCategory(e.target.value)}
                     >
                         <option value="">All Categories</option>
@@ -82,27 +69,29 @@ const App = () => {
                         ))}
                     </select>
                 </div>
-
+                
                 {/* Video Display */}
                 <div className="shorts-video-container">
                     {videos.length > 0 ? (
-                        <>
-                            <div className="video-wrapper">
-                                <iframe
-                                    className="video-frame"
-                                    src={currentVideo.video_url}
-                                    title={currentVideo.title}
-                                    frameBorder="0"
-                                    allowFullScreen
-                                ></iframe>
-                               
-                            </div>
-                            {/* Navigation Buttons */}
-                            <div className="navigation-buttons m-4">
-                                <button onClick={handlePrevious} className="nav-button" style={{backgroundColor:'green'}}>Previous</button>
-                                <button onClick={handleNext} className="nav-button" style={{backgroundColor:'green'}}>Next</button>
-                            </div>
-                        </>
+                        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                            {videos.map(video => (
+                                <div key={video.id} className="col">
+                                    <div className="card h-100">
+                                        <iframe
+                                            className="card-img-top"
+                                            src={video.video_url} // Assuming your API returns video_url for each video
+                                            title={video.title} // Assuming your API returns title for each video
+                                            frameBorder="0"
+                                            allowFullScreen
+                                        ></iframe>
+                                        <div className="card-body">
+                                            <h5 className="card-title">{video.title}</h5>
+                                            <p className="card-text">{video.description}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     ) : (
                         <div>No videos available in this category.</div>
                     )}
@@ -112,4 +101,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default Shorts;

@@ -1,84 +1,31 @@
-/* Shorts.css */
-
-.shorts-video-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* shorts.css or any custom CSS file */
+.custom-select-container {
+    margin-bottom: 20px; /* Equivalent to mb-4 in Bootstrap */
+  }
+  
+  .custom-select-label {
+    display: block;
+    margin-bottom: .5rem;
+    font-size: 1rem;
+  }
+  
+  .custom-select {
+    display: block;
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: #000;
-    color: #fff;
-}
-
-.video-wrapper {
-    position: relative;
-    width: 100%;
-    padding-top: 177.77%; /* 16:9 aspect ratio */
-    margin-bottom: 20px;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
     background-color: #fff;
-}
-
-.video-frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.video-details {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    border-radius: 10px;
-    text-align: left;
-}
-
-.video-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.video-description {
-    margin: 10px 0;
-}
-
-.video-views {
-    margin: 5px 0;
-}
-
-.navigation-buttons {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.nav-button {
-    background-color: #f00;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    flex: 1;
-    margin: 0 10px;
-}
-
-.nav-button:hover {
-    background-color: #d00;
-}
-
-.form-select {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-}
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+  
+  .custom-select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+  }
+  

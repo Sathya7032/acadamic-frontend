@@ -23,6 +23,7 @@ import TestLanguages from "./Tests/TestLanguages";
 import TestTopics from "./Tests/TestTopics";
 import Test from "./Tests/Test";
 import Shorts from "./blogs/Shorts";
+import Profile from "./user/Profile";
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
               <Route element={<TestLanguages/>} path="tests"/>     
               <Route element={<TestTopics/>} path="testtopics/:id/"/>  
               <Route element={<Test/>} path="test/:id/"/> 
+              <Route element={<Profile/>} path="profile"/> 
             </Route>
           </Routes>
         </AuthProvider>

@@ -251,6 +251,10 @@ export default function Base1({ children }) {
               onClose={handleMenuClose}
             >
               <MenuItem onClick={handleMenuClose}>
+                <a href="/profile">profile</a>
+              </MenuItem>
+              <Divider/>
+              <MenuItem onClick={handleMenuClose}>
                 <a onClick={logoutUser}>Logout</a>
               </MenuItem>
             </Menu>
