@@ -9,6 +9,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CircularProgress from '@mui/material/CircularProgress';
 import AuthContext from '../context/AuthContext';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '@mui/material';
@@ -46,6 +47,7 @@ export default function SignUp() {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [password2, setPassword2] = React.useState("");
+    const [loading, setLoading] = React.useState(false); // Loading state
     const [formErrors, setFormErrors] = React.useState({
         email: null,
         username: null,
@@ -76,10 +78,16 @@ export default function SignUp() {
         const formValidation = validateForm(email, username, password, password2);
         setFormErrors(formValidation);
         if (Object.values(formValidation).every(value => value !== false)) {
-            // If all validations pass, register user
-            registerUser(email, username, password, password2);
+            setLoading(true); // Set loading to true
+            try {
+                // If all validations pass, register user
+                await registerUser(email, username, password, password2);
+            } finally {
+                setLoading(false); // Set loading to false once done
+            }
         }
     };
+
     const handleLoginSuccess = async (response) => {
         try {
             const res = await axios.post('https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login', {
@@ -144,6 +152,7 @@ export default function SignUp() {
                                     onChange={handleEmailChange}
                                     error={formErrors.email === false}
                                     helperText={formErrors.email === false ? "Invalid email address" : ""}
+                                    disabled={loading} // Disable while loading
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -158,6 +167,7 @@ export default function SignUp() {
                                     onChange={handleUsernameChange}
                                     error={formErrors.username === false}
                                     helperText={formErrors.username === false ? "Username must be at least 3 characters long" : ""}
+                                    disabled={loading} // Disable while loading
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -173,6 +183,7 @@ export default function SignUp() {
                                     onChange={handlePasswordChange}
                                     error={formErrors.password === false}
                                     helperText={formErrors.password === false ? "Password must be at least 6 characters long and contain one uppercase letter, one number, and one symbol" : ""}
+                                    disabled={loading} // Disable while loading
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -188,6 +199,7 @@ export default function SignUp() {
                                     onChange={handlePassword2Change}
                                     error={formErrors.password2 === false}
                                     helperText={formErrors.password2 === false ? "Passwords do not match" : ""}
+                                    disabled={loading} // Disable while loading
                                 />
                             </Grid>
                         </Grid>
@@ -196,8 +208,9 @@ export default function SignUp() {
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
+                            disabled={loading} // Disable while loading
                         >
-                            Sign Up
+                            {loading ? <CircularProgress size={24} /> : 'Sign Up'} {/* Show loading spinner */}
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>

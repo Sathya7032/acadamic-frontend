@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CircularProgress from '@mui/material/CircularProgress';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import AuthContext from '../context/AuthContext';
@@ -32,37 +33,44 @@ const defaultTheme = createTheme();
 
 export default function SignIn() {
   const { loginUser } = React.useContext(AuthContext);
+  const [loading, setLoading] = React.useState(false); // Add loading state
 
-  const handleSubmits = (e) => {
+  const handleSubmits = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
     if (email.length > 0 && password.length > 0) {
-      loginUser(email, password);
+      setLoading(true); // Set loading to true when form is submitted
+      try {
+        await loginUser(email, password);
+      } finally {
+        setLoading(false); // Set loading to false after the login attempt
+      }
     }
   };
 
   const handleLoginSuccess = async (response) => {
+    setLoading(true); // Set loading to true when Google login is attempted
     try {
       const res = await axios.post('https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login', {
-        token: response.credential,  // The token from Google
+        token: response.credential, // The token from Google
       });
 
       if (res.data.key) {
         // Store the token and manage the session
         localStorage.setItem('token', res.data.key);
         // Redirect or update UI based on login
-        window.location.href = '/dashboard';  // Update as necessary
+        window.location.href = '/dashboard'; // Update as necessary
       } else {
         console.error('Login failed:', res.data);
       }
     } catch (error) {
       console.error('Login failed:', error);
+    } finally {
+      setLoading(false); // Set loading to false after Google login attempt
     }
   };
-
-
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -91,7 +99,6 @@ export default function SignIn() {
               />
             </div>
           </GoogleOAuthProvider>
-                 
           <Box component="form" onSubmit={handleSubmits} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -102,6 +109,7 @@ export default function SignIn() {
               name="email"
               autoComplete="email"
               autoFocus
+              disabled={loading} // Disable while loading
             />
             <TextField
               margin="normal"
@@ -112,18 +120,21 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              disabled={loading} // Disable while loading
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
+              disabled={loading} // Disable while loading
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={loading} // Disable while loading
             >
-              Sign In
+              {loading ? <CircularProgress size={24} /> : 'Sign In'} {/* Show loading spinner */}
             </Button>
             <Grid container>
               <Grid item xs>
