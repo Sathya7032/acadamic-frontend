@@ -92,7 +92,7 @@ export default function SignUp() {
         const { tokenId } = response;
 
         try {
-            const res = await axios.post('http://acadamicffolios.pythonanywhere.com/app/auth/social/google/', {
+            const res = await axios.post('http://acadamicfolios.pythonanywhere.com/app/auth/social/google/', {
                 access_token: tokenId,
             });
 
@@ -132,7 +132,6 @@ export default function SignUp() {
                             <h2>Login with Google</h2>
                            
                             <GoogleLogin
-                                
                                 buttonText="Login with Google"
                                 onSuccess={handleSuccess}
                                 onFailure={handleFailure}
