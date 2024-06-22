@@ -92,12 +92,12 @@ export default function SignUp() {
         const { tokenId } = response;
 
         try {
-            const res = await axios.post('http://acadamicfolios.pythonanywhere.com/app/auth/social/google/', {
+            const res = await axios.post('https://acadamicfolios.pythonanywhere.com/app/auth/social/google/', {
                 access_token: tokenId,
             });
 
             const { access_token } = res.data;
-            localStorage.setItem('jwtToken', access_token);
+            localStorage.setItem('authTokens', access_token);
 
             console.log('JWT Token:', access_token);
         } catch (error) {
