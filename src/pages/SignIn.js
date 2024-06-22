@@ -40,7 +40,7 @@ export default function SignIn() {
         },
       };
       const body = JSON.stringify({ code });
-      const res = await axios.post('http://localhost:8000/dj-rest-auth/google/', body, config);
+      const res = await axios.post('https://acadamicfolios.pythonanywhere.com/dj-rest-auth/google/', body, config);
       // Assuming res.data contains your authentication token or user data
       // Dispatch your login success action here
     } catch (err) {
