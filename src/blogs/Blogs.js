@@ -108,7 +108,7 @@ const Blogs = () => {
               <>
                 <div className="mt-4">
                   {blogs.map((blog) => (
-                    <div key={blog.id} className="card mb-3">
+                    <div key={blog.id} className="card mb-2">
                       <div className="card-body">
                         <h3 className="card-title">{blog.title}</h3>
                         <Divider />

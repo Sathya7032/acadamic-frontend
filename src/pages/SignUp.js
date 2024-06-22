@@ -88,27 +88,25 @@ export default function SignUp() {
         }
     };
 
-    const handleLoginSuccess = async (response) => {
+    const handleSuccess = async (response) => {
+        const { tokenId } = response;
+
         try {
-            const res = await axios.post('https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login', {
-                token: response.credential,  // The token from Google
+            const res = await axios.post('http://acadamicffolios.pythonanywhere.com/app/auth/social/google/', {
+                access_token: tokenId,
             });
 
-            if (res.data.key) {
-                // Store the token and manage the session
-                localStorage.setItem('token', res.data.key);
-                // Redirect or update UI based on login
-                window.location.href = '/dashboard';  // Update as necessary
-            } else {
-                console.error('Login failed:', res.data);
-            }
+            const { access_token } = res.data;
+            localStorage.setItem('jwtToken', access_token);
+
+            console.log('JWT Token:', access_token);
         } catch (error) {
             console.error('Login failed:', error);
         }
     };
 
-    const handleLogin = () => {
-        window.location.href = 'https://acadamicfolios.pythonanywhere.com/accounts/google/login/?process=login';
+    const handleFailure = (error) => {
+        console.error('Google login failed:', error);
     };
 
     return (
@@ -132,9 +130,13 @@ export default function SignUp() {
                     <GoogleOAuthProvider clientId="290336876059-u0nmtqck47t6bluo76b2jn18i9e2bdgb.apps.googleusercontent.com">
                         <div>
                             <h2>Login with Google</h2>
+                           
                             <GoogleLogin
-                                onSuccess={handleLogin}
-                                onError={() => console.log('Login Failed')}
+                                
+                                buttonText="Login with Google"
+                                onSuccess={handleSuccess}
+                                onFailure={handleFailure}
+                                cookiePolicy={'single_host_origin'}
                             />
                         </div>
                     </GoogleOAuthProvider>
