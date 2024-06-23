@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-const swal = require('sweetalert2')
 import {useNavigate} from "react-router-dom";
+const swal = require('sweetalert2')
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState('');
