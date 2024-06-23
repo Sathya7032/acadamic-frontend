@@ -22,7 +22,7 @@ import Base1 from "./Base1";
 
 const Dashboard = () => {
   const api = useAxios();
-  const baseUrl = "https://acadamicfolio.online.com/app";
+  const baseUrl = "https://www.acadamicfolio.online/app";
   const token = localStorage.getItem("authTokens");
 
   if (token) {

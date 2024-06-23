@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 const TestLanguages = () => {
-  const baseUrl = "https://acadamicfolio.online.com/app";
+  const baseUrl = "https://www.acadamicfolio.online/app";
   const [langs, setLangs] = useState([]);
   useEffect(() => {
     fetchTodos();

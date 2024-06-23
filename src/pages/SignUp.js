@@ -192,7 +192,7 @@ export default function SignUp() {
                 <Box mt={5}>
                     <Typography variant="body2" color="text.secondary" align="center">
                         {'Copyright © '}
-                        <Link color="inherit" href="https://mui.com/">
+                        <Link color="inherit" href="https://acadamicfolio.info/">
                             AcademicFolio
                         </Link>{' '}
                         {new Date().getFullYear()}

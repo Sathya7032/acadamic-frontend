@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function Topics() {
-    const baseUrl = "https://acadamicfolio.online.com/app";
+    const baseUrl = "https://www.acadamicfolio.online/app";
 
     const { id } = useParams();
 

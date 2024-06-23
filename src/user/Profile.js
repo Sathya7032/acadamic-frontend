@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 const Profile = () => {
     const token = localStorage.getItem("authTokens");
     const axiosInstance = useAxios();
-    const baseUrl = "https://acadamicfolio.online.com/app";
+    const baseUrl = "https://www.acadamicfolio.online/app";
 
     if (token) {
         const decode = jwtDecode(token);
@@ -38,7 +38,7 @@ const Profile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axiosInstance.post('https://acadamicfolio.online.com/app/profile-post/', {
+            await axiosInstance.post('https://www.acadamicfolio.online/app/profile-post/', {
                 full_name: fullName,
                 bio: bio,
                 role: role,

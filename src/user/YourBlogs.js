@@ -16,7 +16,7 @@ import Swal from "sweetalert2";
 import Base1 from "./Base1";
 const YourBlogs = () => {
   const api = useAxios();
-  const baseUrl = "https://acadamicfolio.online.com/app";
+  const baseUrl = "https://www.acadamicfolio.online/app";
   const token = localStorage.getItem("authTokens");
   const decoded = jwtDecode(token);
   const user_id = decoded.user_id;

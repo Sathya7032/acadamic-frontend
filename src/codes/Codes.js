@@ -7,7 +7,7 @@ import CodeDisplay from "./CodeDisplay";
 
 
 const Codes = () => {
-    const baseUrl = "https://acadamicfolio.online.com/app";
+    const baseUrl = "https://www.acadamicfolio.online/app";
 
     const { id } = useParams();
 

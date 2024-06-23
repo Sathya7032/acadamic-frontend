@@ -11,7 +11,7 @@ const Shorts = () => {
 
     useEffect(() => {
         // Fetch categories from API
-        axios.get('https://acadamicfolio.online.com/app/api/categories/')
+        axios.get('https://www.acadamicfolio.online/app/api/categories/')
             .then(response => {
                 setCategories(response.data);
             })
@@ -22,7 +22,7 @@ const Shorts = () => {
 
     useEffect(() => {
         // Fetch videos based on selected category from API
-        let url = 'https://acadamicfolio.online.com/app/api/shorts/';
+        let url = 'https://www.acadamicfolio.online/app/api/shorts/';
         if (selectedCategory) {
             url += `?category_id=${selectedCategory}`;
         }
