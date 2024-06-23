@@ -49,7 +49,8 @@ const ChangePassword = () => {
         },
         {
           headers: {
-            'X-CSRFToken': csrfToken
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${ localStorage.getItem('access') }`
           },
           withCredentials: true  // Ensure cookies are sent with the request
         }
