@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-const swal = require('sweetalert2');
+import swal from 'sweetalert2';
+import useAxios from '../utils/useAxios';  // Ensure this path matches where your useAxios file is located
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState('');
@@ -10,27 +10,8 @@ const ChangePassword = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  // CSRF token state
-  const [csrfToken, setCsrfToken] = useState('');
-
-  // Function to get CSRF token from cookies
-  const getCSRFTokenFromCookies = () => {
-    let csrfToken = null;
-    if (document.cookie && document.cookie !== '') {
-      document.cookie.split(';').forEach(cookie => {
-        const cookieItem = cookie.trim();
-        if (cookieItem.startsWith('csrftoken=')) {
-          csrfToken = cookieItem.substring('csrftoken='.length);
-        }
-      });
-    }
-    return csrfToken;
-  };
-
-  // Use useEffect to fetch CSRF token on component mount
-  useEffect(() => {
-    setCsrfToken(getCSRFTokenFromCookies());
-  }, []);
+  // Custom axios instance
+  const axiosInstance = useAxios();
 
   const handlePasswordChange = async (e) => {
     e.preventDefault();
@@ -41,21 +22,10 @@ const ChangePassword = () => {
     }
 
     try {
-      const response = await axios.post(
-        'https://acadamicfolios.pythonanywhere.com/auth/password/change/',
-        {
-          old_password: oldPassword,
-          new_password: newPassword
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${ localStorage.getItem('access') }`,
-            "X-CSRFToken": csrfToken 
-          },
-          withCredentials: true  // Ensure cookies are sent with the request
-        }
-      );
+      const response = await axiosInstance.post('/auth/password/change/', {
+        old_password: oldPassword,
+        new_password: newPassword
+      });
 
       if (response.status === 200) {
         setMessage('Password changed successfully.');
@@ -83,6 +53,13 @@ const ChangePassword = () => {
         timerProgressBar: true,
         showConfirmButton: false,
       });
+
+      console.error('Request error:', error);
+      if (error.response) {
+        console.error('Response data:', error.response.data);
+        console.error('Response status:', error.response.status);
+        console.error('Response headers:', error.response.headers);
+      }
     }
   };
 
