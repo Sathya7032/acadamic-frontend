@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     const history = useNavigate();
 
     const loginUser = async (email, password) => {
-        const response = await fetch("https://acadamicfolios.pythonanywhere.com/app/token/", {
+        const response = await fetch("https://acadamicfolio.online.com/app/token/", {
             method: "POST",
             headers:{
                 "Content-Type":"application/json"
