@@ -15,16 +15,7 @@ const ChangePasswordComponent = () => {
     event.preventDefault();
 
     try {
-      // Make sure authTokens are available from useAxios hook
-      const authTokens = axiosInstance.defaults.headers.common.Authorization.split(' ')[1];
-
-      // Decode JWT token to check its expiration
-      const user = jwtDecode(authTokens);
-      const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
-
-      // If token is expired, handle token refresh as needed (already handled by useAxios)
-
-      // Now, change the password
+    
       const response = await axiosInstance.post('https://acadamicfolios.pythonanywhere.com/auth/password/change/', {
         old_password: oldPassword,
         new_password1: newPassword1,
