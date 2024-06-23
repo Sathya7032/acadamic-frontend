@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 const swal = require('sweetalert2');
@@ -10,8 +10,11 @@ const ChangePassword = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
+  // CSRF token state
+  const [csrfToken, setCsrfToken] = useState('');
+
   // Function to get CSRF token from cookies
-  const getCSRFToken = () => {
+  const getCSRFTokenFromCookies = () => {
     let csrfToken = null;
     if (document.cookie && document.cookie !== '') {
       document.cookie.split(';').forEach(cookie => {
@@ -24,6 +27,11 @@ const ChangePassword = () => {
     return csrfToken;
   };
 
+  // Use useEffect to fetch CSRF token on component mount
+  useEffect(() => {
+    setCsrfToken(getCSRFTokenFromCookies());
+  }, []);
+
   const handlePasswordChange = async (e) => {
     e.preventDefault();
 
@@ -33,8 +41,6 @@ const ChangePassword = () => {
     }
 
     try {
-      const csrfToken = getCSRFToken();
-      
       const response = await axios.post(
         'https://acadamicfolios.pythonanywhere.com/user_password_change/',
         {
@@ -44,7 +50,8 @@ const ChangePassword = () => {
         {
           headers: {
             'X-CSRFToken': csrfToken
-          }
+          },
+          withCredentials: true  // Ensure cookies are sent with the request
         }
       );
 
