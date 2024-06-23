@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import swal from 'sweetalert2';
 import useAxios from '../utils/useAxios';  // Ensure this path matches where your useAxios file is located
+import Swal from "sweetalert2";
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState('');
@@ -10,56 +10,35 @@ const ChangePassword = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  // Custom axios instance
-  const axiosInstance = useAxios();
+  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+  const api = useAxios();
 
-  const handlePasswordChange = async (e) => {
-    e.preventDefault();
 
-    if (newPassword !== confirmPassword) {
-      setMessage('New passwords do not match.');
-      return;
-    }
+  const handlePasswordChange = async () => {
+    const formData = new FormData();
+    formData.append("oldPassword", oldPassword);
+    formData.append("newPassword", newPassword);
+    formData.append("confirmPassword", confirmPassword);
 
     try {
-      const response = await axiosInstance.post('https://acadamicfolios.pythonanywhere.com/user_password_change/', {
-        old_password: oldPassword,
-        new_password: newPassword
+      const response = await api.post(baseUrl + "/user_password_change/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
-
-      if (response.status === 200) {
-        setMessage('Password changed successfully.');
-        swal.fire({
-          title: "Password changed successfully",
-          icon: "success",
-          toast: true,
-          timer: 6000,
-          position: 'center',
-          timerProgressBar: true,
-          showConfirmButton: false,
-        });
-        navigate("/dashboard");
-      } else {
-        setMessage('Failed to change password. Please try again.');
-      }
-    } catch (error) {
-      setMessage('Error: ' + (error.response?.data?.message || error.message));
-      swal.fire({
-        title: "There was an error changing password",
-        icon: "error",
+      navigate("/dashboard");
+      Swal.fire({
+        title: "You have added a new Blog.....",
+        width: 400,
+        timer: 2000,
         toast: true,
-        timer: 6000,
-        position: 'center',
         timerProgressBar: true,
-        showConfirmButton: false,
+        padding: "3em",
+        color: "#716add",
       });
-
-      console.error('Request error:', error);
-      if (error.response) {
-        console.error('Response data:', error.response.data);
-        console.error('Response status:', error.response.status);
-        console.error('Response headers:', error.response.headers);
-      }
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error creating blog post:", error);
     }
   };
 
