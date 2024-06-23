@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import {useNavigate} from "react-router-dom";
-const swal = require('sweetalert2')
+import { useNavigate } from "react-router-dom";
+const swal = require('sweetalert2');
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
-  const history = useNavigate();
+  const navigate = useNavigate();
+
+  // Function to get CSRF token from cookies
+  const getCSRFToken = () => {
+    let csrfToken = null;
+    if (document.cookie && document.cookie !== '') {
+      document.cookie.split(';').forEach(cookie => {
+        const cookieItem = cookie.trim();
+        if (cookieItem.startsWith('csrftoken=')) {
+          csrfToken = cookieItem.substring('csrftoken='.length);
+        }
+      });
+    }
+    return csrfToken;
+  };
 
   const handlePasswordChange = async (e) => {
     e.preventDefault();
@@ -19,28 +33,38 @@ const ChangePassword = () => {
     }
 
     try {
-      const response = await axios.post('https://acadamicfolios.pythonanywhere.com/user_password_change/', {
-        old_password: oldPassword,
-        new_password: newPassword
-      });
+      const csrfToken = getCSRFToken();
       
+      const response = await axios.post(
+        'https://acadamicfolios.pythonanywhere.com/user_password_change/',
+        {
+          old_password: oldPassword,
+          new_password: newPassword
+        },
+        {
+          headers: {
+            'X-CSRFToken': csrfToken
+          }
+        }
+      );
+
       if (response.status === 200) {
         setMessage('Password changed successfully.');
-        history("/dashboard")
         swal.fire({
-            title: "Password changed successfully",
-            icon: "success",
-            toast: true,
-            timer: 6000,
-            position: 'center',
-            timerProgressBar: true,
-            showConfirmButton: false,
-        })
+          title: "Password changed successfully",
+          icon: "success",
+          toast: true,
+          timer: 6000,
+          position: 'center',
+          timerProgressBar: true,
+          showConfirmButton: false,
+        });
+        navigate("/dashboard");
       } else {
         setMessage('Failed to change password. Please try again.');
       }
     } catch (error) {
-      setMessage('Error: ' + error.response.data.message || error.message);
+      setMessage('Error: ' + (error.response?.data?.message || error.message));
       swal.fire({
         title: "There was an error changing password",
         icon: "error",
@@ -49,7 +73,7 @@ const ChangePassword = () => {
         position: 'center',
         timerProgressBar: true,
         showConfirmButton: false,
-    })
+      });
     }
   };
 
