@@ -22,7 +22,7 @@ const ChangePassword = () => {
     }
 
     try {
-      const response = await axiosInstance.post('https://acadamicfolios.pythonanywhere.com/auth/password/change/', {
+      const response = await axiosInstance.post('https://acadamicfolios.pythonanywhere.com/user_password_change/', {
         old_password: oldPassword,
         new_password: newPassword
       });
