@@ -1,86 +1,133 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Base1 from "./Base1";
-import '../styles/css/profile.css'
+import { jwtDecode } from "jwt-decode";
+import useAxios from '../utils/useAxios';
+import { TextField, Button, Typography, Box } from '@mui/material';
+import axios from 'axios';
+import Swal from "sweetalert2";
 
 const Profile = () => {
+    const token = localStorage.getItem("authTokens");
+    const axiosInstance = useAxios();
+    const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+
+    if (token) {
+        const decode = jwtDecode(token);
+        var user_id = decode.user_id;
+        var username = decode.username;
+       
+    }
+
+    const [fullName, setFullName] = useState('');
+    const [bio, setBio] = useState('');
+    const [role, setRole] = useState('');
+    const [gitlink, setGitlink] = useState('');
+    const [image, setImage] = useState('');
+
+
+    useEffect(() => {
+        fetchTodos();
+    }, []);
+
+    const fetchTodos = async () => {
+        await axiosInstance.get(baseUrl + "/api/profile/").then((res) => {
+            console.log(res.data);
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axiosInstance.post('https://acadamicfolios.pythonanywhere.com/app/profile-post/', {
+                full_name: fullName,
+                bio: bio,
+                role: role,
+                gitlink: gitlink,
+                image: image
+            });
+            alert('Profile updated successfully!');
+            Swal.fire({
+                title: "Password changed successfully",
+                icon: "success",
+                toast: true,
+                timer: 2000,
+                timerProgressBar: true,
+                position: 'center',
+                showConfirmButton: false,
+              });
+              
+
+        } catch (error) {
+            console.error('Error updating profile:', error);
+            alert('Failed to update profile. Please try again.');
+        }
+    };
+
     return (
         <div>
             <Base1>
-                <div className="container">
-                    <div className="main-body">
-                        {/* Breadcrumb */}
-                        <nav aria-label="breadcrumb" className="main-breadcrumb">
-                            <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li className="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-                                <li className="breadcrumb-item active" aria-current="page">User Profile</li>
-                            </ol>
-                        </nav>
-
-                        <div className="row gutters-sm">
-                            {/* Profile Card */}
-                            <div className="col-md-4 mb-3">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <div className="d-flex flex-column align-items-center text-center">
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
-                                            <div className="mt-3">
-                                                <h4>John Doe</h4>
-                                                <p className="text-secondary mb-1">Full Stack Developer</p>
-                                                <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                                                <button className="btn btn-primary">Follow</button>
-                                                <button className="btn btn-outline-primary">Message</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* Social Links */}
-                                <div className="card mt-3">
-                                    <ul className="list-group list-group-flush">
-                                        <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                            <h6 className="mb-0">Website</h6>
-                                            <span className="text-secondary">https://bootdey.com</span>
-                                        </li>
-                                        {/* Add other list items for GitHub, Twitter, Instagram, Facebook */}
-                                    </ul>
-                                </div>
-                            </div>
-
-                            {/* Profile Details and Project Status */}
-                            <div className="col-md-8">
-                                {/* Profile Details */}
-                                <div className="card mb-3">
-                                    <div className="card-body">
-                                        <div className="row">
-                                            <div className="col-sm-3">
-                                                <h6 className="mb-0">Full Name</h6>
-                                            </div>
-                                            <div className="col-sm-9 text-secondary">
-                                                Kenneth Valdez
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        {/* Add other profile details like Email, Phone, etc. */}
-                                    </div>
-                                </div>
-
-                                {/* Project Status */}
-                                <div className="row gutters-sm">
-                                    <div className="col-sm-6 mb-3">
-                                        <div className="card h-100">
-                                            <div className="card-body">
-                                                <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2">assignment</i>Project Status</h6>
-                                                {/* Render project status details */}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* Add another col-sm-6 card for the second project status */}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Box sx={{ width: '100%', maxWidth: 600, margin: 'auto', padding: 2 }}>
+                    <Typography variant="h2" gutterBottom>Edit Profile</Typography>
+                    <form onSubmit={handleSubmit}>
+                        <TextField
+                            fullWidth
+                            label="Full Name"
+                            name="full_name"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            variant="outlined"
+                            margin="normal"
+                        />
+                        <TextField
+                            fullWidth
+                            label="Bio"
+                            name="bio"
+                            value={bio}
+                            onChange={(e) => setBio(e.target.value)}
+                            variant="outlined"
+                            multiline
+                            rows={4}
+                            margin="normal"
+                        />
+                        <TextField
+                            fullWidth
+                            label="Role"
+                            name="role"
+                            value={role}
+                            onChange={(e) => setRole(e.target.value)}
+                            variant="outlined"
+                            margin="normal"
+                        />
+                        <TextField
+                            fullWidth
+                            label="GitHub Link"
+                            name="gitlink"
+                            value={gitlink}
+                            onChange={(e) => setGitlink(e.target.value)}
+                            variant="outlined"
+                            margin="normal"
+                        />
+                        <TextField
+                            fullWidth
+                            label="Image URL"
+                            name="image"
+                            value={image}
+                            onChange={(e) => setImage(e.target.value)}
+                            variant="outlined"
+                            margin="normal"
+                        />
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            sx={{ mt: 2 }}
+                        >
+                            Save Changes
+                        </Button>
+                    </form>
+                </Box>
             </Base1>
+
         </div>
     )
 }
