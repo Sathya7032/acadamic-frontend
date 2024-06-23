@@ -13,8 +13,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CircularProgress from '@mui/material/CircularProgress';
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import axios from 'axios';
 import AuthContext from '../context/AuthContext';
 
 function Copyright(props) {
@@ -50,11 +48,7 @@ export default function SignIn() {
     }
   };
 
- const reachGoogle=()=>{
-  const clientID = "926048668123-lgs6bqfdc87s1lu0lrp1d9uhsup3j56t.apps.googleusercontent.com";
-  const callBackURI = "https://www.acadamicfolio.info/dashboard";
-  window.location.replace("https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=${callBackURI}&prompt=consent&response_type=code&client_id=${clientID}&scope=openid%20email%20profile&access_type=offline")
- }
+ 
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -74,15 +68,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <GoogleOAuthProvider clientId="290336876059-u0nmtqck47t6bluo76b2jn18i9e2bdgb.apps.googleusercontent.com">
-            <div>
-              <h2>Login with Google</h2>
-              <GoogleLogin
-                onSuccess={handleLoginSuccess}
-                onError={() => console.log('Login Failed')}
-              />
-            </div>
-          </GoogleOAuthProvider>
+         
           <Box component="form" onSubmit={handleSubmits} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"

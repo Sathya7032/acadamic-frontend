@@ -24,6 +24,7 @@ import TestTopics from "./Tests/TestTopics";
 import Test from "./Tests/Test";
 import Shorts from "./blogs/Shorts";
 import Profile from "./user/Profile";
+import ChangePassword from "./user/ChangePassword";
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
               <Route element={<TestTopics/>} path="testtopics/:id/"/>  
               <Route element={<Test/>} path="test/:id/"/> 
               <Route element={<Profile/>} path="profile"/> 
+              <Route element={<ChangePassword/>} path="change-password"/>
             </Route>
           </Routes>
         </AuthProvider>

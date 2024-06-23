@@ -255,6 +255,10 @@ export default function Base1({ children }) {
               </MenuItem>
               <Divider/>
               <MenuItem onClick={handleMenuClose}>
+                <a href="/change-password">change Passowrd</a>
+              </MenuItem>
+              <Divider/>
+              <MenuItem onClick={handleMenuClose}>
                 <a onClick={logoutUser}>Logout</a>
               </MenuItem>
             </Menu>

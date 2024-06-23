@@ -13,8 +13,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import AuthContext from '../context/AuthContext';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '@mui/material';
-import axios from 'axios';
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 function validateEmail(email) {
     // Basic email validation
@@ -88,27 +86,7 @@ export default function SignUp() {
         }
     };
 
-    const handleSuccess = async (response) => {
-        const { tokenId } = response;
-
-        try {
-            const res = await axios.post('https://acadamicfolios.pythonanywhere.com/app/auth/social/google/', {
-                access_token: tokenId,
-            });
-
-            const { access_token } = res.data;
-            localStorage.setItem('authTokens', access_token);
-
-            console.log('JWT Token:', access_token);
-        } catch (error) {
-            console.error('Login failed:', error);
-        }
-    };
-
-    const handleFailure = (error) => {
-        console.error('Google login failed:', error);
-    };
-
+   
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
@@ -127,18 +105,7 @@ export default function SignUp() {
                     <Typography component="h1" variant="h5">
                         Sign up
                     </Typography>
-                    <GoogleOAuthProvider clientId="290336876059-u0nmtqck47t6bluo76b2jn18i9e2bdgb.apps.googleusercontent.com">
-                        <div>
-                            <h2>Login with Google</h2>
-                           
-                            <GoogleLogin
-                                buttonText="Login with Google"
-                                onSuccess={handleSuccess}
-                                onFailure={handleFailure}
-                                cookiePolicy={'single_host_origin'}
-                            />
-                        </div>
-                    </GoogleOAuthProvider>
+                   
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
