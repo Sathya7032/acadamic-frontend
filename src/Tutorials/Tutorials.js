@@ -3,7 +3,7 @@ import axios from 'axios'
 import Base from '../components/Base';
 
 export default function Tutorials() {
-  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+  const baseUrl = "https://aacadamicfolio.online.com/app";
 
   const [tutorials, setTutorials] = useState([]);
   useEffect(() => {

@@ -6,7 +6,7 @@ import { Divider } from '@mui/material';
 
 
 export default function TutorialTopics() {
-    const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+    const baseUrl = "https://acadamicfolio.online.com/app";
 
     const { id } = useParams();
 

@@ -14,7 +14,7 @@ export default function Contact() {
     const [errors, setErrors] = useState({});
 
 
-    const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+    const baseUrl = "https://acadamicfolio.online.com/app";
     const navigate = useNavigate();
 
 

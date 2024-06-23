@@ -5,7 +5,7 @@ import { Divider, List, ListItem, Typography } from '@mui/material';
 
 const TestTopics = () => {
 
-  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+  const baseUrl = "https://acadamicfolio.online.com/app";
   const [topics, setTopics] = useState([]);
   useEffect(() => {
     fetchTodos();

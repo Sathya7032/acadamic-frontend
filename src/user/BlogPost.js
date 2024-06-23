@@ -7,7 +7,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 function BlogPost({ placeholder }) {
-  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+  const baseUrl = "https://acadamicfolio.online.com/app";
   const api = useAxios();
   const navigate = useNavigate();
   const [title, setTitle] = useState("");

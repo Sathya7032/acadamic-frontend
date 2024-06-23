@@ -8,7 +8,7 @@ import useAxios from "../utils/useAxios";
 
 
 const SingleBlog = () => {
-  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+  const baseUrl = "https://acadamicfolio.online.com/app";
 
   const api = useAxios();
 
