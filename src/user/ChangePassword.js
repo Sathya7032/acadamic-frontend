@@ -1,54 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
-import useAxios from '../utils/useAxios';  // Ensure this path matches where your useAxios file is located
-import Swal from "sweetalert2";
+import React, { useState } from 'react';
 
-const ChangePassword = () => {
+const ChangePasswordForm = () => {
   const [oldPassword, setOldPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const navigate = useNavigate();
+  const [newPassword1, setNewPassword1] = useState('');
+  const [newPassword2, setNewPassword2] = useState('');
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
 
-  const baseUrl = "https://acadamicfolios.pythonanywhere.com/";
-  const api = useAxios();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
+    const url = 'https://acadamicfolios.pythonanywhere.com/auth/password/change/';
+    const token = 'your_jwt_token_here';  // Replace with your actual JWT token
 
-  const handlePasswordChange = async () => {
-    const formData = new FormData();
-    formData.append("oldPassword", oldPassword);
-    formData.append("newPassword", newPassword);
-    formData.append("confirmPassword", confirmPassword);
+    const requestData = {
+      old_password: oldPassword,
+      new_password1: newPassword1,
+      new_password2: newPassword2
+    };
 
     try {
-      const response = await api.post(baseUrl + "auth/password/change/", formData, {
+      const response = await fetch(url, {
+        method: 'POST',
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'application/json',
+          'Authorization': `JWT ${token}`
         },
+        body: JSON.stringify(requestData)
       });
-      navigate("/dashboard");
-      Swal.fire({
-        title: "You have added a new Blog.....",
-        width: 400,
-        timer: 2000,
-        toast: true,
-        timerProgressBar: true,
-        padding: "3em",
-        color: "#716add",
-      });
-      console.log(response.data);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.non_field_errors[0] || 'Failed to change password');
+      }
+
+      setSuccessMessage('Password changed successfully!');
+      setError(null);
     } catch (error) {
-      console.error("Error creating blog post:", error);
+      setError(error.message);
+      setSuccessMessage('');
     }
   };
 
   return (
     <div>
       <h2>Change Password</h2>
-      <form onSubmit={handlePasswordChange}>
+      <form onSubmit={handleSubmit}>
         <div>
           <label>Old Password:</label>
-          <input
+          <input 
             type="password"
             value={oldPassword}
             onChange={(e) => setOldPassword(e.target.value)}
@@ -57,27 +57,28 @@ const ChangePassword = () => {
         </div>
         <div>
           <label>New Password:</label>
-          <input
+          <input 
             type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            value={newPassword1}
+            onChange={(e) => setNewPassword1(e.target.value)}
             required
           />
         </div>
         <div>
           <label>Confirm New Password:</label>
-          <input
+          <input 
             type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            value={newPassword2}
+            onChange={(e) => setNewPassword2(e.target.value)}
             required
           />
         </div>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
         <button type="submit">Change Password</button>
       </form>
-      {message && <p>{message}</p>}
     </div>
   );
 };
 
-export default ChangePassword;
+export default ChangePasswordForm;
