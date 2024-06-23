@@ -1,43 +1,43 @@
 import React, { useState } from 'react';
+import {jwtDecode} from "jwt-decode";
+import dayjs from "dayjs";
+import useAxios from '../utils/useAxios';  // Adjust the path as per your file structure
 
-const ChangePasswordForm = () => {
+const ChangePasswordComponent = () => {
+  const axiosInstance = useAxios();
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword1, setNewPassword1] = useState('');
   const [newPassword2, setNewPassword2] = useState('');
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSubmit = async (event) => {
+  const handleChangePassword = async (event) => {
     event.preventDefault();
 
-    const url = 'https://acadamicfolios.pythonanywhere.com/auth/password/change/';
-    const token = 'your_jwt_token_here';  // Replace with your actual JWT token
-
-    const requestData = {
-      old_password: oldPassword,
-      new_password1: newPassword1,
-      new_password2: newPassword2
-    };
-
     try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `JWT ${token}`
-        },
-        body: JSON.stringify(requestData)
+      // Make sure authTokens are available from useAxios hook
+      const authTokens = axiosInstance.defaults.headers.common.Authorization.split(' ')[1];
+
+      // Decode JWT token to check its expiration
+      const user = jwtDecode(authTokens);
+      const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
+
+      // If token is expired, handle token refresh as needed (already handled by useAxios)
+
+      // Now, change the password
+      const response = await axiosInstance.post('https://acadamicfolios.pythonanywhere.com/auth/password/change/', {
+        old_password: oldPassword,
+        new_password1: newPassword1,
+        new_password2: newPassword2
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.non_field_errors[0] || 'Failed to change password');
-      }
-
+      // Handle successful password change
       setSuccessMessage('Password changed successfully!');
       setError(null);
+
     } catch (error) {
-      setError(error.message);
+      console.error('Failed to change password:', error);
+      setError('Failed to change password. Please try again.');
       setSuccessMessage('');
     }
   };
@@ -45,10 +45,10 @@ const ChangePasswordForm = () => {
   return (
     <div>
       <h2>Change Password</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleChangePassword}>
         <div>
           <label>Old Password:</label>
-          <input 
+          <input
             type="password"
             value={oldPassword}
             onChange={(e) => setOldPassword(e.target.value)}
@@ -57,7 +57,7 @@ const ChangePasswordForm = () => {
         </div>
         <div>
           <label>New Password:</label>
-          <input 
+          <input
             type="password"
             value={newPassword1}
             onChange={(e) => setNewPassword1(e.target.value)}
@@ -66,7 +66,7 @@ const ChangePasswordForm = () => {
         </div>
         <div>
           <label>Confirm New Password:</label>
-          <input 
+          <input
             type="password"
             value={newPassword2}
             onChange={(e) => setNewPassword2(e.target.value)}
@@ -81,4 +81,4 @@ const ChangePasswordForm = () => {
   );
 };
 
-export default ChangePasswordForm;
+export default ChangePasswordComponent;
