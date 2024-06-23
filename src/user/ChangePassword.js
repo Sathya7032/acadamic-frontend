@@ -42,7 +42,7 @@ const ChangePassword = () => {
 
     try {
       const response = await axios.post(
-        'https://acadamicfolios.pythonanywhere.com/user_password_change/',
+        'https://acadamicfolios.pythonanywhere.com/auth/password/change/',
         {
           old_password: oldPassword,
           new_password: newPassword
@@ -50,7 +50,8 @@ const ChangePassword = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${ localStorage.getItem('access') }`
+            "Authorization": `Bearer ${ localStorage.getItem('access') }`,
+            "X-CSRFToken": csrfToken 
           },
           withCredentials: true  // Ensure cookies are sent with the request
         }
