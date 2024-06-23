@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
    
      
     const registerUser = async (email, username, password, password2) => {
-        const response = await fetch("https://www.acadamicfolio.online.com/app/register/", {
+        const response = await fetch("https://www.acadamicfolio.online/app/register/", {
             method: "POST",
             headers: {
                 "Content-Type":"application/json",
