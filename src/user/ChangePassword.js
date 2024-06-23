@@ -10,7 +10,7 @@ const ChangePassword = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
+  const baseUrl = "https://acadamicfolios.pythonanywhere.com/";
   const api = useAxios();
 
 
@@ -21,7 +21,7 @@ const ChangePassword = () => {
     formData.append("confirmPassword", confirmPassword);
 
     try {
-      const response = await api.post(baseUrl + "/user_password_change/", formData, {
+      const response = await api.post(baseUrl + "auth/password/change/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
