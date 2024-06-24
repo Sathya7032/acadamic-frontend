@@ -17,7 +17,7 @@ import team1 from '../styles/img/team-1.jpg'
 import team2 from '../styles/img/team-2.jpg'
 import team3 from '../styles/img/team-3.jpg'
 import team4 from '../styles/img/team-4.jpg'
-import blog1 from '../styles/img/blog-1.jpg'
+import blog1 from '../styles/img/sathya.jpg'
 import blog2 from '../styles/img/blog-2.jpg'
 import blog3 from '../styles/img/blog-3.jpg'
 import { useNavigate } from 'react-router-dom'
@@ -49,7 +49,7 @@ export default function Index({ placeholder }) {
         fetchBlogs();
     }, []);
 
-  
+
 
 
     const handleCreatePost = async () => {
@@ -149,9 +149,9 @@ export default function Index({ placeholder }) {
                                 <img className="position-relative w-100" src={image2} style={{ minHeight: '300px', objectFit: 'cover' }} alt="Carousel Slide 2" />
                                 <div className="carousel-caption d-flex align-items-center justify-content-center">
                                     <div className="p-5" style={{ width: '100%', maxWidth: '900px' }}>
-                                        <h5 className="text-white text-uppercase mb-md-3">Best Online Courses</h5>
-                                        <h1 className="display-3 text-white mb-md-4">Best Online Learning Platform</h1>
-                                        <a href="/signup" className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Register Now</a>
+                                        <h5 className="text-white text-uppercase mb-md-3">Elevate Your Work with a Stunning Portfolio</h5>
+                                        <h1 className="display-3 text-white mb-md-4">Stunning Portfolio Websites</h1>
+                                        <a href="/contact" className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Contact Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -159,8 +159,8 @@ export default function Index({ placeholder }) {
                                 <img className="position-relative w-100" src={image3} style={{ minHeight: '300px', objectFit: 'cover' }} alt="Carousel Slide 3" />
                                 <div className="carousel-caption d-flex align-items-center justify-content-center">
                                     <div className="p-5" style={{ width: '100%', maxWidth: '900px' }}>
-                                        <h5 className="text-white text-uppercase mb-md-3">Best Online Courses</h5>
-                                        <h1 className="display-3 text-white mb-md-4">New Way To Learn From Home</h1>
+                                        <h5 className="text-white text-uppercase mb-md-3">Drive Growth with a Dynamic Business Website</h5>
+                                        <h1 className="display-3 text-white mb-md-4">Empowering Small Businesses</h1>
                                         <a href="/signup" className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Register Now</a>
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@ export default function Index({ placeholder }) {
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
                     crossorigin="anonymous"></script>
                 <ins class="adsbygoogle"
-                    style={{display:'block'}}
+                    style={{ display: 'block' }}
                     data-ad-client="ca-pub-6919135852803356"
                     data-ad-slot="4480234004"
                     data-ad-format="auto"
@@ -201,10 +201,27 @@ export default function Index({ placeholder }) {
 
 
                 <div className="container-fluid py-5">
+                    <div className="container py-5">
+                        <div className="row align-items-center">
+
+                            <div className="col-lg-12" style={{ justifyContent: 'center',alignContent:'center' }}>
+                                <div className="text-left mb-4">
+                                    <h5 className="text-primary text-uppercase mb-3 text-center" style={{ letterSpacing: '5px' }}>About Us</h5>
+                                    <h1 className='text-center'>Professional Website Solutions for Portfolios & Small Businesses</h1>
+                                </div>
+                                <p>Transform your online presence with custom-designed websites that reflect your brand and drive growth. We create visually stunning portfolio websites and dynamic small business sites with features like responsive design, e-commerce integration, and SEO optimization. Our process includes thorough consultation, collaborative design, rigorous testing, and ongoing support to ensure your site remains effective and up-to-date.</p>
+                                <center><a href="/contact"  className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Contact Now</a></center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div className="container-fluid py-5">
                     <div className="container pt-5 pb-3">
                         <div className="text-center mb-5">
-                            <h5 className="text-primary text-uppercase mb-3" style={{ letterSpacing: '5px' }}>Subjects</h5>
-                            <h1>Explore Top Tutorials</h1>
+                            <h5 className="text-primary text-uppercase mb-3" style={{ letterSpacing: '5px' }}>Services</h5>
+                            <h1>Our Top Services</h1>
                         </div>
                         <div className="row">
                             <div className="col-lg-3 col-md-6 mb-4">
@@ -212,7 +229,6 @@ export default function Index({ placeholder }) {
                                     <img className="img-fluid" src={cat1} alt="Web Design" />
                                     <a className="cat-overlay text-white text-decoration-none" href="/tutorials">
                                         <h4 className="text-white font-weight-medium">Web Design</h4>
-                                        <span>100 Courses</span>
                                     </a>
                                 </div>
                             </div>
@@ -221,7 +237,7 @@ export default function Index({ placeholder }) {
                                     <img className="img-fluid" src={cat2} alt="Development" />
                                     <a className="cat-overlay text-white text-decoration-none" href="/tutorials">
                                         <h4 className="text-white font-weight-medium">Development</h4>
-                                        <span>100 Courses</span>
+
                                     </a>
                                 </div>
                             </div>
@@ -229,8 +245,8 @@ export default function Index({ placeholder }) {
                                 <div className="cat-item position-relative overflow-hidden rounded mb-2">
                                     <img className="img-fluid" src={cat3} alt="Game Design" />
                                     <a className="cat-overlay text-white text-decoration-none" href="/tutorials">
-                                        <h4 className="text-white font-weight-medium">Game Design</h4>
-                                        <span>100 Courses</span>
+                                        <h4 className="text-white font-weight-medium">Tutorials</h4>
+
                                     </a>
                                 </div>
                             </div>
@@ -238,8 +254,8 @@ export default function Index({ placeholder }) {
                                 <div className="cat-item position-relative overflow-hidden rounded mb-2">
                                     <img className="img-fluid" src={cat4} alt="Game Design" />
                                     <a className="cat-overlay text-white text-decoration-none" href="/tutorials">
-                                        <h4 className="text-white font-weight-medium">Game Design</h4>
-                                        <span>100 Courses</span>
+                                        <h4 className="text-white font-weight-medium">Blogs</h4>
+
                                     </a>
                                 </div>
                             </div>
@@ -247,8 +263,8 @@ export default function Index({ placeholder }) {
                                 <div className="cat-item position-relative overflow-hidden rounded mb-2">
                                     <img className="img-fluid" src={cat5} alt="Game Design" />
                                     <a className="cat-overlay text-white text-decoration-none" href="/tutorials">
-                                        <h4 className="text-white font-weight-medium">Game Design</h4>
-                                        <span>100 Courses</span>
+                                        <h4 className="text-white font-weight-medium">Code Snippets</h4>
+
                                     </a>
                                 </div>
                             </div>
@@ -256,8 +272,8 @@ export default function Index({ placeholder }) {
                                 <div className="cat-item position-relative overflow-hidden rounded mb-2">
                                     <img className="img-fluid" src={cat6} alt="Game Design" />
                                     <a className="cat-overlay text-white text-decoration-none" href="/tutorials">
-                                        <h4 className="text-white font-weight-medium">Game Design</h4>
-                                        <span>100 Courses</span>
+                                        <h4 className="text-white font-weight-medium">Short videos</h4>
+
                                     </a>
                                 </div>
                             </div>
@@ -265,8 +281,8 @@ export default function Index({ placeholder }) {
                                 <div className="cat-item position-relative overflow-hidden rounded mb-2">
                                     <img className="img-fluid" src={cat7} alt="Game Design" />
                                     <a className="cat-overlay text-white text-decoration-none" href="/tutorials">
-                                        <h4 className="text-white font-weight-medium">Game Design</h4>
-                                        <span>100 Courses</span>
+                                        <h4 className="text-white font-weight-medium">Tests</h4>
+
                                     </a>
                                 </div>
                             </div>
@@ -275,8 +291,8 @@ export default function Index({ placeholder }) {
                                 <div className="cat-item position-relative overflow-hidden rounded mb-2">
                                     <img className="img-fluid" src={cat8} alt="SEO" />
                                     <a className="cat-overlay text-white text-decoration-none" href="/tutorials">
-                                        <h4 className="text-white font-weight-medium">SEO</h4>
-                                        <span>100 Courses</span>
+                                        <h4 className="text-white font-weight-medium">Task Manger</h4>
+
                                     </a>
                                 </div>
                             </div>
@@ -286,7 +302,7 @@ export default function Index({ placeholder }) {
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
                     crossorigin="anonymous"></script>
                 <ins class="adsbygoogle"
-                    style={{display:'block'}}
+                    style={{ display: 'block' }}
                     data-ad-client="ca-pub-6919135852803356"
                     data-ad-slot="4480234004"
                     data-ad-format="auto"
@@ -382,14 +398,15 @@ export default function Index({ placeholder }) {
                 <div className="container-fluid py-5">
                     <div className="container pt-5 pb-3">
                         <div className="text-center mb-5">
-                            <h5 className="text-primary text-uppercase mb-3" style={{ letterSpacing: "5px" }}>Teachers</h5>
-                            <h1>Meet Our Teachers</h1>
+                            <h5 className="text-primary text-uppercase mb-3" style={{ letterSpacing: "5px" }}>Team</h5>
+                            <h1>Meet Our Team</h1>
                         </div>
-                        <div className="row">
+                        <div className="row" style={{ alignContent: 'center', justifyContent: 'center' }}>
+
                             <div className="col-md-6 col-lg-3 text-center team mb-4">
                                 <div className="team-item rounded overflow-hidden mb-2">
                                     <div className="team-img position-relative">
-                                        <img className="img-fluid" src={team1} alt="" />
+                                        <img className="img-fluid" src={blog1} alt="" />
                                         <div className="team-social">
                                             <a className="btn btn-outline-light btn-square mx-1" href="#"><i className="fab fa-twitter"></i></a>
                                             <a className="btn btn-outline-light btn-square mx-1" href="#"><i className="fab fa-facebook-f"></i></a>
@@ -397,59 +414,13 @@ export default function Index({ placeholder }) {
                                         </div>
                                     </div>
                                     <div className="bg-secondary p-4">
-                                        <h5>John Doe</h5>
-                                        <p className="m-0">Web Designer</p>
+                                        <h5>K satyanarayana</h5>
+                                        <p className="m-0">Developer</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-6 col-lg-3 text-center team mb-4">
-                                <div className="team-item rounded overflow-hidden mb-2">
-                                    <div className="team-img position-relative">
-                                        <img className="img-fluid" src={team2} alt="" />
-                                        <div className="team-social">
-                                            <a className="btn btn-outline-light btn-square mx-1" href="#"><i className="fab fa-twitter"></i></a>
-                                            <a className="btn btn-outline-light btn-square mx-1" href="#"><i className="fab fa-facebook-f"></i></a>
-                                            <a className="btn btn-outline-light btn-square mx-1" href="#"><i className="fab fa-linkedin-in"></i></a>
-                                        </div>
-                                    </div>
-                                    <div className="bg-secondary p-4">
-                                        <h5>John Doe</h5>
-                                        <p className="m-0">Web Designer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-3 text-center team mb-4">
-                                <div className="team-item rounded overflow-hidden mb-2">
-                                    <div className="team-img position-relative">
-                                        <img className="img-fluid" src={team3} alt="" />
-                                        <div className="team-social">
-                                            <a className="btn btn-outline-light btn-square mx-1" href="#"><i className="fab fa-twitter"></i></a>
-                                            <a className="btn btn-outline-light btn-square mx-1" href="#"><i className="fab fa-facebook-f"></i></a>
-                                            <a className="btn btn-outline-light btn-square mx-1" href="#"><i className="fab fa-linkedin-in"></i></a>
-                                        </div>
-                                    </div>
-                                    <div className="bg-secondary p-4">
-                                        <h5>John Doe</h5>
-                                        <p className="m-0">Web Designer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-6 col-lg-3 text-center team mb-4">
-                                <div className="team-item rounded overflow-hidden mb-2">
-                                    <div className="team-img position-relative">
-                                        <img className="img-fluid" src={team4} alt="" />
-                                        <div className="team-social">
-                                            <a className="btn btn-outline-light btn-square mx-1" href="#"><i className="fab fa-twitter"></i></a>
-                                            <a className="btn btn-outline-light btn-square mx-1" href="#"><i className="fab fa-facebook-f"></i></a>
-                                            <a className="btn btn-outline-light btn-square mx-1" href="#"><i className="fab fa-linkedin-in"></i></a>
-                                        </div>
-                                    </div>
-                                    <div className="bg-secondary p-4">
-                                        <h5>John Doe</h5>
-                                        <p className="m-0">Web Designer</p>
-                                    </div>
-                                </div>
-                            </div>
+
+
                         </div>
                     </div>
                 </div>
