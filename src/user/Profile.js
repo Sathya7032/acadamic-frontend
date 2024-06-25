@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Base1 from "./Base1";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import useAxios from '../utils/useAxios';
 import { TextField, Button, Typography, Box } from '@mui/material';
 import Swal from "sweetalert2";
@@ -57,7 +57,7 @@ const Profile = () => {
                     'Content-Type': 'multipart/form-data',
                 }
             });
-            
+
             Swal.fire({
                 title: "Profile updated successfully",
                 icon: "success",
@@ -78,6 +78,7 @@ const Profile = () => {
         <div>
             <Base1>
                 <Box sx={{ width: '100%', maxWidth: 600, margin: 'auto', padding: 2 }}>
+                    <Typography variant="h4 text-center text primary" gutterBottom>You can edit your profile here {username} and your user Id is {user_id}</Typography>
                     <Typography variant="h2" gutterBottom>Edit Profile</Typography>
                     <form onSubmit={handleSubmit}>
                         <TextField
