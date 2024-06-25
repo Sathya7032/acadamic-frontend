@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Base1 from "./Base1";
-import { jwtDecode } from "jwt-decode";
+import jwtDecode from "jwt-decode";
 import useAxios from '../utils/useAxios';
 import { TextField, Button, Typography, Box } from '@mui/material';
-import axios from 'axios';
 import Swal from "sweetalert2";
 
 const Profile = () => {
@@ -15,47 +14,59 @@ const Profile = () => {
         const decode = jwtDecode(token);
         var user_id = decode.user_id;
         var username = decode.username;
-       
     }
 
     const [fullName, setFullName] = useState('');
     const [bio, setBio] = useState('');
     const [role, setRole] = useState('');
     const [gitlink, setGitlink] = useState('');
-    const [image, setImage] = useState('');
-
+    const [image, setImage] = useState(null);  // Change from URL string to file object
 
     useEffect(() => {
-        fetchTodos();
+        fetchProfile();
     }, []);
 
-    const fetchTodos = async () => {
-        await axiosInstance.get(baseUrl + "/api/profile/").then((res) => {
+    const fetchProfile = async () => {
+        try {
+            const res = await axiosInstance.get(`${baseUrl}/api/profile/`);
             console.log(res.data);
-        });
+            // You might want to set the state with the received data here
+        } catch (error) {
+            console.error('Error fetching profile:', error);
+        }
+    };
+
+    const handleImageChange = (e) => {
+        setImage(e.target.files[0]); // Update state with the selected file
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axiosInstance.post('https://www.acadamicfolio.online/app/profile-post/', {
-                full_name: fullName,
-                bio: bio,
-                role: role,
-                gitlink: gitlink,
-                image: image
+            const formData = new FormData();
+            formData.append('full_name', fullName);
+            formData.append('bio', bio);
+            formData.append('role', role);
+            formData.append('gitlink', gitlink);
+            if (image) {
+                formData.append('image', image); // Append the file to the form data
+            }
+
+            await axiosInstance.post(`${baseUrl}/profile-post/`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
             });
-            alert('Profile updated successfully!');
+            
             Swal.fire({
-                title: "Password changed successfully",
+                title: "Profile updated successfully",
                 icon: "success",
                 toast: true,
                 timer: 2000,
                 timerProgressBar: true,
                 position: 'center',
                 showConfirmButton: false,
-              });
-              
+            });
 
         } catch (error) {
             console.error('Error updating profile:', error);
@@ -107,14 +118,14 @@ const Profile = () => {
                             variant="outlined"
                             margin="normal"
                         />
-                        <TextField
-                            fullWidth
-                            label="Image URL"
+                        <Typography variant="body1" gutterBottom>
+                            Profile Image
+                        </Typography>
+                        <input
+                            type="file"
                             name="image"
-                            value={image}
-                            onChange={(e) => setImage(e.target.value)}
-                            variant="outlined"
-                            margin="normal"
+                            onChange={handleImageChange}
+                            style={{ marginBottom: '16px' }}
                         />
                         <Button
                             type="submit"
@@ -127,9 +138,8 @@ const Profile = () => {
                     </form>
                 </Box>
             </Base1>
-
         </div>
-    )
-}
+    );
+};
 
-export default Profile
+export default Profile;
