@@ -5,7 +5,7 @@ import { Divider, Paper, Typography, Button } from '@mui/material';
 import Base1 from '../user/Base1';
 
 const Test = () => {
-    const baseUrl = "https://www.acadamicfolio.online/app";
+    const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
     const [questions, setQuestions] = useState([]);
     const [selectedAnswers, setSelectedAnswers] = useState({});
     const [correctCount, setCorrectCount] = useState(null);

@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 const Profile = () => {
     const token = localStorage.getItem("authTokens");
     const axiosInstance = useAxios();
-    const baseUrl = "https://www.acadamicfolio.online/app";
+    const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
 
     if (token) {
         const decode = jwtDecode(token);

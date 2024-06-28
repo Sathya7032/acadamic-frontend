@@ -5,7 +5,7 @@ import moment from "moment";
 import { Divider } from "@mui/material";
 
 const Blogs = () => {
-  const baseUrl = "https://www.acadamicfolios.pythonanywhere.com/app";
+  const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
