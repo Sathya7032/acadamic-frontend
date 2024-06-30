@@ -19,7 +19,7 @@ import team3 from '../styles/img/team-3.jpg'
 import team4 from '../styles/img/team-4.jpg'
 import blog1 from '../styles/img/sathya.jpg'
 import blog2 from '../styles/img/blog-2.jpg'
-import blog3 from '../styles/img/blog-3.jpg'
+import blog3 from '../styles/img/banner.png'
 import { useNavigate } from 'react-router-dom'
 import useAxios from '../utils/useAxios'
 import Swal from "sweetalert2";
@@ -204,13 +204,16 @@ export default function Index({ placeholder }) {
                     <div className="container py-5">
                         <div className="row align-items-center">
 
-                            <div className="col-lg-12" style={{ justifyContent: 'center',alignContent:'center' }}>
+                            <div className="col-lg-5" style={{ justifyContent: 'center',alignContent:'center' }}>
                                 <div className="text-left mb-4">
-                                    <h5 className="text-primary text-uppercase mb-3 text-center" style={{ letterSpacing: '5px' }}>About Us</h5>
+                                    <h5 className="text-primary text-uppercase mb-3 text-center" style={{ letterSpacing: '5px' }}>Our other Services</h5>
                                     <h1 className='text-center'>Professional Website Solutions for Portfolios & Small Businesses</h1>
                                 </div>
                                 <p>Transform your online presence with custom-designed websites that reflect your brand and drive growth. We create visually stunning portfolio websites and dynamic small business sites with features like responsive design, e-commerce integration, and SEO optimization. Our process includes thorough consultation, collaborative design, rigorous testing, and ongoing support to ensure your site remains effective and up-to-date.</p>
                                 <center><a href="/contact"  className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Contact Now</a></center>
+                            </div>
+                            <div className="col-lg-7">
+                                <img className="img-fluid rounded mb-4 mb-lg-0" style={{height:'500px'}} src={blog3} alt="About Us" />
                             </div>
                         </div>
                     </div>
