@@ -92,10 +92,10 @@ const Base = ({ children }) => {
                                 </div>
                                 {token ? (
                                     <>
-                                        <a onClick={logoutUser} className="btn btn-primary py-2  px-3 ml-auto d-none d-lg-block" >Logout</a>
+                                        <a onClick={logoutUser} className="btn btn-primary py-2  px-3 ml-auto" >Logout</a>
                                     </>
                                 ) : (
-                                    <a className="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="/signup">Register</a>
+                                    <a className="btn btn-primary py-2  px-3 ml-auto" href="/signup">Register</a>
                                 )}
 
                             </div>
