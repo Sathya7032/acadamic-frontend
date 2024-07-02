@@ -25,6 +25,7 @@ import Test from "./Tests/Test";
 import Shorts from "./blogs/Shorts";
 import Profile from "./user/Profile";
 import ChangePassword from "./user/ChangePassword";
+import PasswordReset from "./user/PasswordReset";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
             <Route element={<SignIn />} path="signin" />
             <Route element={<SignUp />} path="signup" />
             <Route element={<Shorts />} path="shorts" />
+            <Route element={<PasswordReset />} path="password-reset" />
             <Route element={<PrivateRoute />}>
               <Route element={<Dashboard />} path="dashboard" />
               <Route element={<YourBlogs />} path="your_blogs" />

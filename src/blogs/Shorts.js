@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Base from '../components/Base'; // Assuming Base is your layout component
 import '../styles/css/shorts.css';
+import ReactPlayer from 'react-player';
 
 
 const Shorts = () => {
@@ -77,13 +78,7 @@ const Shorts = () => {
                             {videos.map(video => (
                                 <div key={video.id} className="col">
                                     <div className="card h-100">
-                                        <iframe
-                                            className="card-img-top"
-                                            src={video.video_url} // Assuming your API returns video_url for each video
-                                            title={video.title} // Assuming your API returns title for each video
-                                            frameBorder="0"
-                                            allowFullScreen
-                                        ></iframe>
+                                        <ReactPlayer url={video.video_url} playing controls width="100%" />
                                         <div className="card-body">
                                             <h5 className="card-title">{video.title}</h5>
                                             <p className="card-text">{video.description}</p>
