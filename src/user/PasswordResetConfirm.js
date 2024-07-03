@@ -112,22 +112,18 @@ const PasswordResetConfirm = () => {
                                 id="password"
                                 label="Enter Password"
                                 value={newPassword}
-                                onChange={(e) => setNewPassword(e.target.value)}
-                                name="new_password1"
+                                onChange={(e) => setNewPassword(e.target.value)}     
                                 type='password'
-                                autoFocus
                             />
                             <TextField
                                 margin="normal"
                                 required
                                 fullWidth
-                                id="password"
+                                id="confirm password"
                                 label="Confirm Password"
                                 type='password'
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                name="new_password2"
-                                autoFocus
                             />
 
                             <FormControlLabel
