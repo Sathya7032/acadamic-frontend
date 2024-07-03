@@ -113,7 +113,7 @@ const PasswordResetConfirm = () => {
                                 label="Enter Password"
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
-                                name="password"
+                                name="new_password1"
                                 type='password'
                                 autoFocus
                             />
@@ -126,7 +126,7 @@ const PasswordResetConfirm = () => {
                                 type='password'
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                name="password"
+                                name="new_password2"
                                 autoFocus
                             />
 
