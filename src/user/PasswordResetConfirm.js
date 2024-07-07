@@ -70,9 +70,10 @@ const PasswordResetConfirm = () => {
             })
         } catch (error) {
             setMessage('Error resetting password.');
+            console.log(error)
             setLoading(false);
             swal.fire({
-                title: "Something went wrong",
+                title: "Error resetting password.",
                 icon: "error",
                 toast: true,
                 timer: 6000,

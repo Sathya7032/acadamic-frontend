@@ -4,7 +4,6 @@ import Base from '../components/Base'; // Assuming Base is your layout component
 import '../styles/css/shorts.css';
 import ReactPlayer from 'react-player';
 
-
 const Shorts = () => {
     const [categories, setCategories] = useState([]);
     const [videos, setVideos] = useState([]);
@@ -78,7 +77,12 @@ const Shorts = () => {
                             {videos.map(video => (
                                 <div key={video.id} className="col">
                                     <div className="card h-100">
-                                        <ReactPlayer url={video.video_url} playing controls width="100%" />
+                                        <ReactPlayer 
+                                            url={video.video_url} 
+                                            playing={false} // Ensure videos do not play automatically
+                                            controls 
+                                            width="100%" 
+                                        />
                                         <div className="card-body">
                                             <h5 className="card-title">{video.title}</h5>
                                             <p className="card-text">{video.description}</p>
