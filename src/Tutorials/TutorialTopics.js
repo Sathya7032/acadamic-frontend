@@ -14,7 +14,7 @@ export default function TutorialTopics() {
 
     useEffect(() => {
         axios
-            .get(baseUrl + `/tutorials/${url}/posts`)
+            .get(baseUrl + `/tutorials/${url}/`)
             .then((response) => {
                 setTopics(response.data);
                 console.log(response.data);
