@@ -8,18 +8,20 @@ import useAxios from "../utils/useAxios";
 
 const SingleBlog = () => {
   const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
-
   const api = useAxios();
-
-  const { title } = useParams();
+  const { url } = useParams(); // Extract title from URL
 
   const [post, setPost] = useState(null);
-
+  const [comments, setComments] = useState([]);
+  const [content, setContent] = useState("");
   const token = localStorage.getItem("authTokens");
+
+  // URL-encode the title to handle spaces and special characters
+  
 
   useEffect(() => {
     axios
-      .get(baseUrl + `/blogs/${title}/`)
+      .get(`${baseUrl}/blogs/${url}/`)
       .then((response) => {
         setPost(response.data);
         console.log(response.data);
@@ -27,14 +29,12 @@ const SingleBlog = () => {
       .catch((error) => {
         console.error("Error fetching blog:", error);
       });
-  }, [title]);
-
-  const [comments, setComments] = useState([]);
+  }, [encodedTitle]);
 
   useEffect(() => {
     async function fetchComments() {
       try {
-        const response = await axios.get(baseUrl + `/blogs/${title}/comments/`);
+        const response = await axios.get(`${baseUrl}/blogs/${url}/comments/`);
         setComments(response.data);
         console.log(response.data);
       } catch (error) {
@@ -42,9 +42,7 @@ const SingleBlog = () => {
       }
     }
     fetchComments();
-  }, [title]);
-
-  const [content, setContent] = useState("");
+  }, [encodedTitle]);
 
   const handleChange = (e) => {
     setContent(e.target.value);
@@ -53,8 +51,8 @@ const SingleBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post(baseUrl + `/blog/${title}/comment/create/`, {
-        content: content
+      const response = await api.post(`${baseUrl}/blogs/${url}/comment/create/`, {
+        content: content,
       });
       console.log("Comment posted successfully:", response.data);
       setContent("");
@@ -85,9 +83,13 @@ const SingleBlog = () => {
                 <center>
                   <h4 className="text-danger p-2">
                     <span className="text-primary">Blog written by :- </span>
-                    <span className="text-danger">{post.user.username}</span>
+                    <span className="text-danger">
+                      {post.user ? post.user.username : "Unknown"}
+                    </span>
                   </h4>
-                  <h6>Email the Author :- {post.user.email}</h6>
+                  <h6>
+                    Email the Author :- {post.user ? post.user.email : "Not available"}
+                  </h6>
                 </center>
               </Paper>
               <Divider />
@@ -126,7 +128,7 @@ const SingleBlog = () => {
                   <h6>
                     Posted by:-{" "}
                     <span style={{ color: "red" }}>
-                      {comment.user.username}
+                      {comment.user ? comment.user.username : "Unknown"}
                     </span>
                   </h6>
                 </Paper>
