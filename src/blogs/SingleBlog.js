@@ -6,38 +6,35 @@ import { Card, CardMedia, Divider, Paper, Typography } from "@mui/material";
 import { TextField, Button } from "@mui/material";
 import useAxios from "../utils/useAxios";
 
-
 const SingleBlog = () => {
   const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
 
   const api = useAxios();
 
-  const { id } = useParams();
+  const { title } = useParams();
 
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState(null);
 
   const token = localStorage.getItem("authTokens");
 
-
-
   useEffect(() => {
     axios
-      .get(baseUrl + `/blogs/${id}/`)
+      .get(baseUrl + `/blogs/${title}/`)
       .then((response) => {
         setPost(response.data);
         console.log(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching tutorials:", error);
+        console.error("Error fetching blog:", error);
       });
-  }, [id]);
+  }, [title]);
 
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
     async function fetchComments() {
       try {
-        const response = await axios.get(baseUrl + `/blogs/${id}/comments/`);
+        const response = await axios.get(baseUrl + `/blogs/${title}/comments/`);
         setComments(response.data);
         console.log(response.data);
       } catch (error) {
@@ -45,55 +42,52 @@ const SingleBlog = () => {
       }
     }
     fetchComments();
-  }, [id]);
+  }, [title]);
 
   const [content, setContent] = useState("");
 
   const handleChange = (e) => {
     setContent(e.target.value);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post(baseUrl + `/blog/${id}/comment/create/`, {
+      const response = await api.post(baseUrl + `/blog/${title}/comment/create/`, {
         content: content
       });
       console.log("Comment posted successfully:", response.data);
-      // Reset form field after successful submission
       setContent("");
-      // Update the comments state to display the newly posted comment
-      setComments([...comments, response.data]); // Add the new comment to the existing comments array
+      setComments([...comments, response.data]);
     } catch (error) {
       console.error("Error posting comment:", error);
     }
   };
-
-
 
   return (
     <div>
       <Base>
         <div className="m-5">
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
-            crossorigin="anonymous"></script>
-          <ins class="adsbygoogle"
+            crossOrigin="anonymous"></script>
+          <ins className="adsbygoogle"
             style={{ display: "block", textAlign: "center" }}
             data-ad-layout="in-article"
             data-ad-format="fluid"
             data-ad-client="ca-pub-6919135852803356"
             data-ad-slot="9140112864"></ins>
           <script>
-            (adsbygoogle = window.adsbygoogle || []).push({ });
+            (adsbygoogle = window.adsbygoogle || []).push({});
           </script>
-          {post.map((posts) => (
-            <div key={posts.id}>
+          {post && (
+            <div>
               <Paper>
                 <center>
                   <h4 className="text-danger p-2">
                     <span className="text-primary">Blog written by :- </span>
-                    <span className="text-danger">{posts.user.username}</span>
+                    <span className="text-danger">{post.user.username}</span>
                   </h4>
-                  <h6>Email the Author :- {posts.user.email}</h6>
+                  <h6>Email the Author :- {post.user.email}</h6>
                 </center>
               </Paper>
               <Divider />
@@ -106,20 +100,20 @@ const SingleBlog = () => {
                   padding: 5,
                 }}
               >
-                {posts.title}
+                {post.title}
               </Typography>
               <Divider />
               <Card>
-                <CardMedia component="img" image={posts.image} />
+                <CardMedia component="img" image={post.image} />
               </Card>
               <Typography
                 style={{ color: "black", paddingTop: 10 }}
-                dangerouslySetInnerHTML={{ __html: posts.content }}
+                dangerouslySetInnerHTML={{ __html: post.content }}
               ></Typography>
 
-              {posts.comment}
+              {post.comment}
             </div>
-          ))}
+          )}
         </div>
 
         <div className="m-5">
@@ -140,8 +134,6 @@ const SingleBlog = () => {
               </div>
             ))}
           </ul>
-
-
 
           {token ? (
             <div>
