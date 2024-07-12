@@ -115,7 +115,7 @@ const Blogs = () => {
                         <p className="card-text" dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 400) }} />
                         <p className="card-text"><small className="text-muted">Views: {blog.views}</small></p>
                         <p className="card-text"><small className="text-muted">{moment(blog.date).format("DD-MMMM-YYYY")}</small></p>
-                        <a href={`/blogs/${blog.id}/`} className="btn btn-primary" rel="noopener noreferrer">
+                        <a href={`/blogs/${blog.title}/`} className="btn btn-primary" rel="noopener noreferrer">
                           Continue Reading
                         </a>
                       </div>
