@@ -35,7 +35,7 @@ export default function TutorialTopics() {
                         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                             {topics ? (
                                 topics.map(topic => (
-                                    <div key={topic.url} className="col mb-4">
+                                    <div key={topic.id} className="col mb-4">
                                         <div className="card h-120">
                                             <iframe
                                                 className="card-img-top"
