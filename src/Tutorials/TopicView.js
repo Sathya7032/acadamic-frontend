@@ -12,7 +12,7 @@ import '../styles/css/video.css'
 export default function TopicView() {
     const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
 
-    const { id } = useParams();
+    const { url } = useParams();
     const api = useAxios();
     const token = localStorage.getItem("authTokens");
 
@@ -20,7 +20,7 @@ export default function TopicView() {
 
     useEffect(() => {
         axios
-            .get(baseUrl + `/tutorials/posts/${id}/`)
+            .get(baseUrl + `/tutorials/posts/${url}/`)
             .then((response) => {
                 setTopics(response.data);
                 console.log(response.data);
@@ -28,14 +28,14 @@ export default function TopicView() {
             .catch((error) => {
                 console.error("Error fetching tutorials:", error);
             });
-    }, [id]);
+    }, [url]);
 
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
         async function fetchComments() {
             try {
-                const response = await axios.get(baseUrl + `/tutorials/${id}/comments/`);
+                const response = await axios.get(baseUrl + `/tutorials/${url}/comments/`);
                 setComments(response.data);
                 console.log(response.data);
             } catch (error) {
@@ -43,7 +43,7 @@ export default function TopicView() {
             }
         }
         fetchComments();
-    }, [id]);
+    }, [url]);
 
     const [content, setContent] = useState("");
 
@@ -53,7 +53,7 @@ export default function TopicView() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await api.post(baseUrl + `/tutorials/${id}/comment/create/`, {
+            const response = await api.post(baseUrl + `/tutorials/${url}/comment/create/`, {
                 content: content
             });
             console.log("Comment posted successfully:", response.data);

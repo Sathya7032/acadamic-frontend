@@ -45,7 +45,7 @@ export default function TutorialTopics() {
                                                 allowFullScreen
                                             ></iframe>
                                             <div className="card-body">
-                                                <a href={`/tutorials/posts/${topic.post_id}`}>
+                                                <a href={`/tutorials/posts/${topic.url}`}>
                                                     <h5 className="card-title">{topic.post_title}</h5>
                                                 </a>
                                                 <a href={`/tutorials/posts/${topic.url}`}  className="btn btn-info" rel="noopener noreferrer">
