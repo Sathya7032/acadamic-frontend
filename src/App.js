@@ -43,7 +43,7 @@ function App() {
             <Route element={<TutorialTopics />} path="tutorials/:id/" />
             <Route element={<TopicView />} path="tutorials/posts/:id/" />
             <Route element={<Blogs />} path="/blogs" />
-            <Route element={<SingleBlog />} path="blogs/:title/" />
+            <Route element={<SingleBlog />} path="blogs/:url/" />
             <Route element={<Languages />} path="/languages" />
             <Route element={<Topics />} path="/topics/:id/" />
             <Route element={<CodeTopics />} path="languages/:id/codes" />
