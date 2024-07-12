@@ -48,7 +48,7 @@ export default function TutorialTopics() {
                                                 <a href={`/tutorials/posts/${topic.post_id}`}>
                                                     <h5 className="card-title">{topic.post_title}</h5>
                                                 </a>
-                                                <a href={`/tutorials/posts/${topic.post_id}`}  className="btn btn-info" rel="noopener noreferrer">
+                                                <a href={`/tutorials/posts/${topic.url}`}  className="btn btn-info" rel="noopener noreferrer">
                                                     Explore full topic
                                                 </a>
                                             </div>

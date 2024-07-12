@@ -40,8 +40,8 @@ function App() {
             <Route element={<Index />} path="/" />
             <Route element={<Contact />} path="/contact" />
             <Route element={<Tutorials />} path="/tutorials" />
-            <Route element={<TutorialTopics />} path="tutorials/:id/" />
-            <Route element={<TopicView />} path="tutorials/posts/:id/" />
+            <Route element={<TutorialTopics />} path="tutorials/:url/" />
+            <Route element={<TopicView />} path="tutorials/posts/:url/" />
             <Route element={<Blogs />} path="/blogs" />
             <Route element={<SingleBlog />} path="blogs/:url/" />
             <Route element={<Languages />} path="/languages" />
