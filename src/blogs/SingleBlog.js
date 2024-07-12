@@ -9,38 +9,38 @@ import useAxios from "../utils/useAxios";
 const SingleBlog = () => {
   const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
   const api = useAxios();
-  const { url } = useParams(); // Extract title from URL
+  const { url } = useParams();
 
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState("");
   const token = localStorage.getItem("authTokens");
 
-  // URL-encode the title to handle spaces and special characters
-  
-
   useEffect(() => {
-    axios
-      .get(`${baseUrl}/blogs/${url}/`)
-      .then((response) => {
+    const fetchPost = async () => {
+      try {
+        const response = await axios.get(`${baseUrl}/blogs/${url}/`);
         setPost(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
+        console.log("Blog post data:", response.data);
+      } catch (error) {
         console.error("Error fetching blog:", error);
-      });
+      }
+    };
+
+    fetchPost();
   }, [url]);
 
   useEffect(() => {
-    async function fetchComments() {
+    const fetchComments = async () => {
       try {
         const response = await axios.get(`${baseUrl}/blogs/${url}/comments/`);
         setComments(response.data);
-        console.log(response.data);
+        console.log("Comments data:", response.data);
       } catch (error) {
         console.error("Error fetching comments:", error);
       }
-    }
+    };
+
     fetchComments();
   }, [url]);
 
@@ -77,7 +77,7 @@ const SingleBlog = () => {
           <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
           </script>
-          {post && (
+          {post ? (
             <div>
               <Paper>
                 <center>
@@ -105,16 +105,20 @@ const SingleBlog = () => {
                 {post.title}
               </Typography>
               <Divider />
-              <Card>
-                <CardMedia component="img" image={post.image} />
-              </Card>
+              {post.image && (
+                <Card>
+                  <CardMedia component="img" image={post.image} />
+                </Card>
+              )}
               <Typography
                 style={{ color: "black", paddingTop: 10 }}
                 dangerouslySetInnerHTML={{ __html: post.content }}
-              ></Typography>
-
-              {post.comment}
+              />
             </div>
+          ) : (
+            <Typography variant="h6" style={{ textAlign: "center", color: "red" }}>
+              Loading...
+            </Typography>
           )}
         </div>
 
