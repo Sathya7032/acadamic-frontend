@@ -27,6 +27,7 @@ import Profile from "./user/Profile";
 import ChangePassword from "./user/ChangePassword";
 import PasswordReset from "./user/PasswordReset";
 import PasswordResetConfirm from "./user/PasswordResetConfirm";
+import { Analytics } from "@vercel/analytics/react"
 
 
 function App() {
