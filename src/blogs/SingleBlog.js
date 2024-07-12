@@ -29,7 +29,7 @@ const SingleBlog = () => {
       .catch((error) => {
         console.error("Error fetching blog:", error);
       });
-  }, [encodedTitle]);
+  }, [url]);
 
   useEffect(() => {
     async function fetchComments() {
@@ -42,7 +42,7 @@ const SingleBlog = () => {
       }
     }
     fetchComments();
-  }, [encodedTitle]);
+  }, [url]);
 
   const handleChange = (e) => {
     setContent(e.target.value);
