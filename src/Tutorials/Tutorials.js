@@ -47,9 +47,9 @@ export default function Tutorials() {
                 <img class="img-fluid" src={tutorial.tutorialImage} alt=""/>
                   <div class="bg-secondary p-4">
                    <h3 className='text-center' style={{color:'tomato',textTransform:'uppercase'}}>{tutorial.tutorialName}</h3>
-                    <a class="h5" href={`/tutorials/${tutorial.id}`}>{tutorial.tutorialContent}</a>
+                    <a class="h5" href={`/tutorials/${tutorial.url}`}>{tutorial.tutorialContent}</a>
                     <div class="border-top mt-4 pt-4">
-                    <a href={`/tutorials/${tutorial.id}`} className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Explore</a>
+                    <a href={`/tutorials/${tutorial.url}`} className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Explore</a>
                     </div>
                   </div>
                 </div>

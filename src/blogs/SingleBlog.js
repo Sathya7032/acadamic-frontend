@@ -19,7 +19,7 @@ const SingleBlog = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/blogs/${url}/`);
+        const response = await axios.get(`${baseUrl}/blogs/${url}`);
         setPost(response.data);
         console.log("Blog post data:", response.data);
       } catch (error) {
@@ -105,11 +105,7 @@ const SingleBlog = () => {
                 {post.title}
               </Typography>
               <Divider />
-              {post.image && (
-                <Card>
-                  <CardMedia component="img" image={post.image} />
-                </Card>
-              )}
+              
               <Typography
                 style={{ color: "black", paddingTop: 10 }}
                 dangerouslySetInnerHTML={{ __html: post.content }}

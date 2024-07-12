@@ -8,13 +8,13 @@ import { Divider } from '@mui/material';
 export default function TutorialTopics() {
     const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
 
-    const { id } = useParams();
+    const { url } = useParams();
 
     const [topics, setTopics] = useState([]);
 
     useEffect(() => {
         axios
-            .get(baseUrl + `/tutorials/${id}/posts`)
+            .get(baseUrl + `/tutorials/${url}/posts`)
             .then((response) => {
                 setTopics(response.data);
                 console.log(response.data);
@@ -22,7 +22,7 @@ export default function TutorialTopics() {
             .catch((error) => {
                 console.error("Error fetching tutorials:", error);
             });
-    }, [id]);
+    }, [url]);
 
     return (
         <div>
@@ -35,7 +35,7 @@ export default function TutorialTopics() {
                         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                             {topics ? (
                                 topics.map(topic => (
-                                    <div key={topic.id} className="col mb-4">
+                                    <div key={topic.url} className="col mb-4">
                                         <div className="card h-120">
                                             <iframe
                                                 className="card-img-top"
