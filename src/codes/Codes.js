@@ -9,13 +9,13 @@ import CodeDisplay from "./CodeDisplay";
 const Codes = () => {
     const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
 
-    const { id } = useParams();
+    const { url } = useParams();
 
     const [topics, setTopics] = useState([]);
 
     useEffect(() => {
         axios
-            .get(baseUrl + `/languages/codes/${id}/`)
+            .get(baseUrl + `/languages/codes/${url}/`)
             .then((response) => {
                 setTopics(response.data);
                 console.log(response.data);
@@ -23,7 +23,7 @@ const Codes = () => {
             .catch((error) => {
                 console.error("Error fetching tutorials:", error);
             });
-    }, [id]);
+    }, [url]);
 
     return (
         <div>

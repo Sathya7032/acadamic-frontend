@@ -7,13 +7,13 @@ import { Divider, List, ListItem, Paper, Typography } from "@mui/material";
 const CodeTopics = () => {
   const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
 
-  const { id } = useParams();
+  const { url } = useParams();
 
   const [codes, setCodes] = useState([]);
 
   useEffect(() => {
     axios
-      .get(baseUrl + `/languages/${id}/codes/`)
+      .get(baseUrl + `/languages/${url}/codes/`)
       .then((response) => {
         setCodes(response.data);
         console.log(response.data);
@@ -21,7 +21,7 @@ const CodeTopics = () => {
       .catch((error) => {
         console.error("Error fetching tutorials:", error);
       });
-  }, [id]);
+  }, [url]);
 
   return (
     <div>
@@ -34,7 +34,7 @@ const CodeTopics = () => {
             <ul style={{ listStyle: 'none' }}>
               {codes.map((code, index) => (
                 <div key={code.id}>
-                  <a href={`/languages/codes/${code.code_id}/`}>
+                  <a href={`/languages/codes/${code.url}/`}>
                     <li>
 
                       <span style={{fontSize:15,color:'darkslategrey',fontWeight:'bolder',padding:5}}>{index + 1}.     {code.title}</span>

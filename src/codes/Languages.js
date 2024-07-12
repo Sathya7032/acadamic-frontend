@@ -43,12 +43,12 @@ const Languages = () => {
                                         <div className="blog-item m-3">
                                             <div className="blog-item-content p-3">
                                                 <h3 className="mt-3 mb-3">
-                                                    <a href={`/topics/${langs.id}/`}>
+                                                    <a href={`/topics/${langs.url}/`}>
                                                         {index+1}.  {langs.language}
                                                     </a>
                                                 </h3>
                                                 <a
-                                                    href={`/topics/${langs.id}/`}
+                                                    href={`/topics/${langs.url}/`}
                                                     className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2"
                                                 >
                                                     Topics

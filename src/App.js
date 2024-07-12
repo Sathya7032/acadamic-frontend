@@ -45,9 +45,9 @@ function App() {
             <Route element={<Blogs />} path="/blogs" />
             <Route element={<SingleBlog />} path="blogs/:url/" />
             <Route element={<Languages />} path="/languages" />
-            <Route element={<Topics />} path="/topics/:id/" />
-            <Route element={<CodeTopics />} path="languages/:id/codes" />
-            <Route element={<Codes />} path="languages/codes/:id/" />
+            <Route element={<Topics />} path="/topics/:url/" />
+            <Route element={<CodeTopics />} path="languages/:url/codes" />
+            <Route element={<Codes />} path="languages/codes/:url/" />
             <Route element={<SignIn />} path="signin" />
             <Route element={<SignUp />} path="signup" />
             <Route element={<Shorts />} path="shorts" />
