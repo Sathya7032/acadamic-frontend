@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Base from "../components/Base";
-import { Card, CardMedia, Divider, Paper, Typography } from "@mui/material";
-import { TextField, Button } from "@mui/material";
+import { Card, CardMedia, Divider, Paper, Typography, TextField, Button } from "@mui/material";
 import useAxios from "../utils/useAxios";
 
 const SingleBlog = () => {
@@ -121,20 +120,26 @@ const SingleBlog = () => {
         <div className="m-5">
           <h2 style={{ textAlign: "center", color: "green" }}>Comments:</h2>
           <ul>
-            {comments.map((comment) => (
-              <div key={comment.id}>
-                <Paper style={{ padding: 20, margin: 20 }}>
-                  <h4 className="text-dark">{comment.content}</h4>
-                  <h6>
-                    Posted by:-{" "}
-                    <span style={{ color: "red" }}>
-                      {comment.user ? comment.user.username : "Unknown"}
-                    </span>
-                  </h6>
-                </Paper>
-                <Divider />
-              </div>
-            ))}
+            {comments.length > 0 ? (
+              comments.map((comment) => (
+                <div key={comment.id}>
+                  <Paper style={{ padding: 20, margin: 20 }}>
+                    <h4 className="text-dark">{comment.content}</h4>
+                    <h6>
+                      Posted by:-{" "}
+                      <span style={{ color: "red" }}>
+                        {comment.user ? comment.user.username : "Unknown"}
+                      </span>
+                    </h6>
+                  </Paper>
+                  <Divider />
+                </div>
+              ))
+            ) : (
+              <Typography variant="h6" style={{ textAlign: "center", color: "red" }}>
+                No comments yet. Be the first to comment!
+              </Typography>
+            )}
           </ul>
 
           {token ? (
