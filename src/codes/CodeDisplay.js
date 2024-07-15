@@ -18,7 +18,7 @@ const CodeDisplay = ({ code }) => {
   const executeCode = async () => {
     try {
       const response = await axios.post(
-        "https://acadamicfolios.pythonanywhere.com/app/api/proxy/",
+        "https://www.acadamicfolio.info/api/proxy/",
         {
           files: {
             "package.json": {
