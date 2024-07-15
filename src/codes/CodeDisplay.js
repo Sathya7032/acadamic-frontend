@@ -18,7 +18,7 @@ const CodeDisplay = ({ code }) => {
   const executeCode = async () => {
     try {
       const response = await axios.post(
-        "https://codesandbox.io/api/v1/sandboxes/define",
+        "https://acadamicfolios.pythonanywhere.com/app/api/proxy/",
         {
           files: {
             "package.json": {
@@ -64,13 +64,9 @@ const CodeDisplay = ({ code }) => {
         value={codeValue}
         theme={oneDark}
         extensions={[javascript()]}
-        onBeforeChange={(editor, data, value) => {
-          setCodeValue(value);
-        }}
+        onChange={(value) => setCodeValue(value)}
         style={{ paddingTop: "50px" }}
-        editorDidMount={(editor) => {
-          editorRef.current = editor;
-        }}
+        ref={editorRef}
       />
       <button
         onClick={executeCode}
