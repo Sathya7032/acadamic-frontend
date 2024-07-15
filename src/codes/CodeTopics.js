@@ -38,7 +38,7 @@ const CodeTopics = () => {
                   <a href={`/languages/codes/${code.url}/`}>
                     <li>
 
-                      <span style={{fontSize:20,color:'darkslategrey',fontWeight:'bolder',padding:5}}>{index + 1}.     {code.title}</span>
+                      <span style={{fontSize:15,color:'darkslategrey',fontWeight:'bolder',padding:15}}>{index + 1}.     {code.title}</span>
 
                     </li>
                   </a>
