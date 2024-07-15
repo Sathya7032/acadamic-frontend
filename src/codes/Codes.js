@@ -56,7 +56,7 @@ const Codes = () => {
                             <CodeDisplay code={topics.code} />
                         </Paper>
                         <Paper style={{ margin: 20, backgroundColor: "snow", padding: 20 }}>
-                            <Typography>{topics.content}</Typography>
+                            <p dangerouslySetInnerHTML={{ __html: topics.content }}></p>
                         </Paper>
                     </>
                 )}
