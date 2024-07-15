@@ -31,18 +31,18 @@ const CodeTopics = () => {
         </Paper>
         <Paper style={{ margin: 20 }}>
           {codes ? (
-            <ul style={{ listStyle: 'none' }}>
+            <ul className='list-group '>
               {codes.map((code, index) => (
                 <div key={code.id}>
-                  <Divider/>
+                 
                   <a href={`/languages/codes/${code.url}/`}>
-                    <li>
+                    <li className='list-group-item'>
 
-                      <span style={{fontSize:15,color:'darkslategrey',fontWeight:'bolder',padding:15}}>{index + 1}.     {code.title}</span>
+                      <span style={{fontSize:15,color:'darkslategrey',fontWeight:'bolder',padding:5}}>{index + 1}.     {code.title}</span>
 
                     </li>
                   </a>
-                  <Divider />
+                 
                 </div>
               ))}
             </ul>
