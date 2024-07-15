@@ -39,7 +39,7 @@ const Languages = () => {
                             <div class="row">
 
                                 {lang.map((langs, index) => (
-                                    <div key={langs.id} className="col-lg-5 col-md-4 mb-2 " style={{ border: 'black solid 1px', margin: 1 , backgroundColor: '#505050', borderRadius: 15, textTransform: 'uppercase' }}>
+                                    <div key={langs.id} className="col-lg-5 col-md-4 mb-2 " style={{ border: 'black solid 1px', margin: 1 , backgroundColor: '#101010', borderRadius: 15, textTransform: 'uppercase' }}>
                                         <div className="blog-item m-3">
                                             <div className="blog-item-content p-3">
                                                 <h3 className="mt-3 mb-3">
