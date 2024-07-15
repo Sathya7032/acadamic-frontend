@@ -62,7 +62,6 @@ const CodeDisplay = ({ code }) => {
       </button>
       <CodeMirror
         value={codeValue}
-        height="300px"
         theme={oneDark}
         extensions={[javascript()]}
         onBeforeChange={(editor, data, value) => {
