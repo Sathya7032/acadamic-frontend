@@ -29,7 +29,6 @@ const CodeTopics = () => {
         <Paper style={{ margin: 20, backgroundColor: "darkslategrey" }}>
           <h2 style={{ textAlign: "center", color: 'white', padding: 10 }}>Programs</h2>
         </Paper>
-        <Paper style={{ margin: 20 }}>
           {codes ? (
             <ul className='list-group '>
               {codes.map((code, index) => (
@@ -49,7 +48,7 @@ const CodeTopics = () => {
           ) : (
             <h1 className="text-white">No codes yet</h1>
           )}
-        </Paper>
+      
       </Base>
     </div>
   );
