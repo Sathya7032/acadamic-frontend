@@ -5,7 +5,7 @@ import axios from "axios";
 import { Paper } from "@mui/material";
 import ReactPlayer from "react-player";
 import useAxios from '../utils/useAxios';
-import { Card, CardMedia, Divider, Typography } from "@mui/material";
+import {  Divider } from "@mui/material";
 import { TextField, Button } from "@mui/material";
 import '../styles/css/video.css'
 

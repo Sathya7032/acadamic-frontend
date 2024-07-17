@@ -4,12 +4,7 @@ import AuthContext from '../context/AuthContext';
 import { useLocation } from 'react-router-dom';
 
 const Base = ({ children }) => {
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-    };
+   
 
     const token = localStorage.getItem("authTokens");
 

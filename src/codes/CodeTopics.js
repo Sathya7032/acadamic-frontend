@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Base from "../components/Base";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Divider, List, ListItem, Paper, Typography } from "@mui/material";
+import {  Paper } from "@mui/material";
 
 const CodeTopics = () => {
   const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
