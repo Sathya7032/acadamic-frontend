@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Base from "../components/Base";
-import { Card, CardMedia, Divider, Paper, Typography, TextField, Button } from "@mui/material";
+import { Paper, Typography, Divider, Button } from "@mui/material";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import useAxios from "../utils/useAxios";
 
 const SingleBlog = () => {
@@ -43,8 +45,9 @@ const SingleBlog = () => {
     fetchComments();
   }, [url]);
 
-  const handleChange = (e) => {
-    setContent(e.target.value);
+  const handleChange = (event, editor) => {
+    const data = editor.getData();
+    setContent(data);
   };
 
   const handleSubmit = async (e) => {
@@ -65,17 +68,6 @@ const SingleBlog = () => {
     <div>
       <Base>
         <div className="m-5">
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
-            crossOrigin="anonymous"></script>
-          <ins className="adsbygoogle"
-            style={{ display: "block", textAlign: "center" }}
-            data-ad-layout="in-article"
-            data-ad-format="fluid"
-            data-ad-client="ca-pub-6919135852803356"
-            data-ad-slot="9140112864"></ins>
-          <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
           {post ? (
             <div>
               <Paper>
@@ -86,9 +78,7 @@ const SingleBlog = () => {
                       {post.user ? post.user.username : "Unknown"}
                     </span>
                   </h4>
-                  <h6>
-                    Email the Author :- {post.user ? post.user.email : "Not available"}
-                  </h6>
+                  <h6>Email the Author :- {post.user ? post.user.email : "Not available"}</h6>
                 </center>
               </Paper>
               <Divider />
@@ -104,7 +94,6 @@ const SingleBlog = () => {
                 {post.title}
               </Typography>
               <Divider />
-              
               <Typography
                 style={{ color: "black", paddingTop: 10 }}
                 dangerouslySetInnerHTML={{ __html: post.content }}
@@ -124,7 +113,10 @@ const SingleBlog = () => {
               comments.map((comment) => (
                 <div key={comment.id}>
                   <Paper style={{ padding: 20, margin: 20 }}>
-                    <h4 className="text-dark">{comment.content}</h4>
+                    <Typography
+                      style={{ color: "black", paddingTop: 10 }}
+                      dangerouslySetInnerHTML={{ __html: comment.content }}
+                    />
                     <h6>
                       Posted by:-{" "}
                       <span style={{ color: "red" }}>
@@ -146,16 +138,10 @@ const SingleBlog = () => {
             <div>
               <h2>Post a Comment</h2>
               <form onSubmit={handleSubmit}>
-                <TextField
-                  label="Comment"
-                  variant="outlined"
-                  margin="normal"
-                  fullWidth
-                  multiline
-                  rows={4}
-                  value={content}
+                <CKEditor
+                  editor={ClassicEditor}
+                  data={content}
                   onChange={handleChange}
-                  required
                 />
                 <Button type="submit" variant="contained" color="primary">
                   Post Comment

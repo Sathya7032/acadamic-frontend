@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { oneDark } from "@codemirror/theme-one-dark";
-import axios from "axios";
 
 const CodeDisplay = ({ code }) => {
   const [copied, setCopied] = useState(false);
@@ -15,28 +14,10 @@ const CodeDisplay = ({ code }) => {
     setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
   };
 
-  const executeCode = async () => {
+  const executeCode = () => {
     try {
-      const response = await axios.post(
-        "https://www.acadamicfolio.info/api/proxy/",
-        {
-          files: {
-            "package.json": {
-              content: {
-                dependencies: {
-                  react: "latest",
-                  "react-dom": "latest",
-                },
-              },
-            },
-            "index.js": {
-              content: codeValue,
-            },
-          },
-        }
-      );
-
-      window.open(`https://codesandbox.io/s/${response.data.sandbox_id}`, "_blank");
+      // eslint-disable-next-line no-new-func
+      new Function(codeValue)();
     } catch (error) {
       console.error("Error executing code:", error);
     }

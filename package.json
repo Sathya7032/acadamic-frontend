@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^42.0.1",
+    "@ckeditor/ckeditor5-react": "^8.0.0",
     "@codemirror/basic-setup": "^0.20.0",
     "@codemirror/lang-javascript": "^6.2.2",
     "@emotion/react": "^11.11.4",
