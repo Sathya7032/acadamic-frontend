@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import Base from '../components/Base'
+import React, { useEffect, useState } from 'react';
+import Base from '../components/Base';
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Paper } from "@mui/material";
+import { Paper, Typography, Divider, TextField, Button } from "@mui/material";
 import ReactPlayer from "react-player";
 import useAxios from '../utils/useAxios';
-import {  Divider } from "@mui/material";
-import { TextField, Button } from "@mui/material";
-import '../styles/css/video.css'
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import '../styles/css/video.css';
 
 export default function TopicView() {
     const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
-
     const { url } = useParams();
     const api = useAxios();
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const token = localStorage.getItem("authTokens");
 
     const [topics, setTopics] = useState([]);
+    const [comments, setComments] = useState([]);
+    const [content, setContent] = useState("");
 
     useEffect(() => {
         axios
@@ -29,8 +32,6 @@ export default function TopicView() {
                 console.error("Error fetching tutorials:", error);
             });
     }, [url]);
-
-    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         async function fetchComments() {
@@ -45,11 +46,10 @@ export default function TopicView() {
         fetchComments();
     }, [url]);
 
-    const [content, setContent] = useState("");
-
     const handleChange = (e) => {
         setContent(e.target.value);
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -57,77 +57,91 @@ export default function TopicView() {
                 content: content
             });
             console.log("Comment posted successfully:", response.data);
-            // Reset form field after successful submission
             setContent("");
-            // Update the comments state to display the newly posted comment
-            setComments([...comments, response.data]); // Add the new comment to the existing comments array
+            setComments([...comments, response.data]);
         } catch (error) {
             console.error("Error posting comment:", error);
         }
     };
 
-
     return (
         <div>
             <Base>
-                <div>
-                    <Paper style={{ margin: 20, backgroundColor: "snow" }}>
-                        <h2 style={{ textAlign: "center" }}>{topics.post_title}</h2>
+                <div style={{ margin: isMobile ? 0 : 20, padding: isMobile ? '10px' : '40px' }}>
+                    <Paper style={{ backgroundColor: "snow", padding: isMobile ? '10px' : '20px' }}>
+                        <Typography
+                            variant={isMobile ? "h6" : "h4"}
+                            style={{ textAlign: "center", fontWeight: "bolder" }}
+                        >
+                            {topics.post_title}
+                        </Typography>
                     </Paper>
-
-
 
                     <center>
                         <ReactPlayer
                             url={topics.post_video}
                             className="react-player"
-                            width="50%"
+                            width="100%"
                             controls={true}
                         />
                     </center>
 
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
                         crossorigin="anonymous"></script>
-                    <ins class="adsbygoogle"
-                        style={{display:"block",textAlign:"center"}}
+                    <ins className="adsbygoogle"
+                        style={{ display: "block", textAlign: "center" }}
                         data-ad-layout="in-article"
                         data-ad-format="fluid"
                         data-ad-client="ca-pub-6919135852803356"
                         data-ad-slot="9140112864"></ins>
                     <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({ });
+                        (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
 
-                    <Paper style={{ margin: 20, backgroundColor: "snow", padding: 20 }}>
-                        <p dangerouslySetInnerHTML={{ __html: topics.post_content }}></p>
+                    <Paper style={{ backgroundColor: "snow", padding: isMobile ? '10px' : '20px' }}>
+                        <Typography
+                            style={{ color: "black", fontSize: isMobile ? '14px' : 'inherit' }}
+                            dangerouslySetInnerHTML={{ __html: topics.post_content }}
+                        />
                     </Paper>
                 </div>
 
-                <div className="m-5">
-                    <h2 style={{ textAlign: "center", color: "green" }}>Comments:</h2>
+                <div style={{ margin: isMobile ? 0 : 20, padding: isMobile ? '10px' : '40px' }}>
+                    <Typography
+                        variant={isMobile ? "h6" : "h4"}
+                        style={{ textAlign: "center", color: "green" }}
+                    >
+                        Comments:
+                    </Typography>
                     <ul>
                         {comments.map((comment) => (
                             <div key={comment.id}>
-                                <Paper style={{ padding: 20, margin: 20 }}>
-                                    <h6 className="text-dark">{comment.content}</h6>
+                                <Paper style={{ padding: isMobile ? '10px' : '20px', margin: isMobile ? '10px' : '20px' }}>
+                                    <Typography
+                                        style={{ color: "black", fontSize: isMobile ? '14px' : 'inherit' }}
+                                    >
+                                        {comment.content}
+                                    </Typography>
                                     <Divider />
-                                    <h6>
-                                        Posted by:-{" "}
-                                        <span style={{ color: "red" }}>
-                                            {comment.user.username}
-                                        </span>
-                                    </h6>
+                                    <Typography
+                                        style={{ color: "red", fontSize: isMobile ? '14px' : 'inherit' }}
+                                    >
+                                        Posted by: {comment.user.username}
+                                    </Typography>
                                 </Paper>
                                 <Divider />
                             </div>
                         ))}
                     </ul>
 
-
-
                     {token ? (
                         <div>
-                            <h2>Post a Comment</h2>
+                            <Typography
+                                variant={isMobile ? "h6" : "h4"}
+                                style={{ textAlign: "center" }}
+                            >
+                                Post a Comment
+                            </Typography>
                             <form onSubmit={handleSubmit}>
                                 <TextField
                                     label="Comment"
@@ -139,21 +153,34 @@ export default function TopicView() {
                                     value={content}
                                     onChange={handleChange}
                                     required
+                                    InputProps={{
+                                        style: { fontSize: isMobile ? '14px' : 'inherit' }
+                                    }}
+                                    InputLabelProps={{
+                                        style: { fontSize: isMobile ? '14px' : 'inherit' }
+                                    }}
                                 />
-                                <Button type="submit" variant="contained" color="primary">
+                                <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                    style={{ fontSize: isMobile ? '14px' : 'inherit' }}
+                                >
                                     Post Comment
                                 </Button>
                             </form>
                         </div>
                     ) : (
                         <div style={{ textAlign: "center" }}>
-                            <p>
+                            <Typography
+                                style={{ fontSize: isMobile ? '14px' : 'inherit' }}
+                            >
                                 Please <a href="/login">login</a> to post a comment.
-                            </p>
+                            </Typography>
                         </div>
                     )}
                 </div>
             </Base>
         </div>
-    )
+    );
 }
