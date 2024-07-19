@@ -6,11 +6,15 @@ import { Paper, Typography, Divider, Button } from "@mui/material";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import useAxios from "../utils/useAxios";
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const SingleBlog = () => {
   const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
   const api = useAxios();
   const { url } = useParams();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
@@ -65,25 +69,13 @@ const SingleBlog = () => {
   };
 
   return (
-    <div>
+    <div style={{ margin: 0, padding: 0 }}>
       <Base>
-        <div className="m-5">
+        <div style={{ padding: isMobile ? '10px' : '20px' }}>
           {post ? (
             <div>
-              <Paper>
-                <center>
-                  <h4 className="text-danger p-2">
-                    <span className="text-primary">Blog written by :- </span>
-                    <span className="text-danger">
-                      {post.user ? post.user.username : "Unknown"}
-                    </span>
-                  </h4>
-                  <h6>Email the Author :- {post.user ? post.user.email : "Not available"}</h6>
-                </center>
-              </Paper>
-              <Divider />
               <Typography
-                variant="h4"
+                variant={isMobile ? "h6" : "h4"}
                 style={{
                   fontWeight: "bolder",
                   textTransform: "uppercase",
@@ -95,9 +87,24 @@ const SingleBlog = () => {
               </Typography>
               <Divider />
               <Typography
-                style={{ color: "black", paddingTop: 10 }}
+                style={{
+                  color: "black",
+                  paddingTop: 10,
+                  fontSize: isMobile ? '14px' : 'inherit'
+                }}
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
+              <Divider />
+              <Paper style={{ padding: isMobile ? '10px' : '20px' }}>
+                <center>
+                  <h5 className="text-danger p-2" style={{ fontSize: isMobile ? '16px' : 'inherit' }}>
+                    <span className="text-primary">Blog written by: </span>
+                    <span className="text-danger">
+                      {post.user ? post.user.username : "Unknown"}
+                    </span>
+                  </h5>
+                </center>
+              </Paper>
             </div>
           ) : (
             <Typography variant="h6" style={{ textAlign: "center", color: "red" }}>
@@ -106,20 +113,24 @@ const SingleBlog = () => {
           )}
         </div>
 
-        <div className="m-5">
-          <h2 style={{ textAlign: "center", color: "green" }}>Comments:</h2>
+        <div style={{ padding: isMobile ? '10px' : '20px' }}>
+          <h2 style={{ textAlign: "center", color: "green", fontSize: isMobile ? '18px' : 'inherit' }}>Comments:</h2>
           <ul>
             {comments.length > 0 ? (
               comments.map((comment) => (
                 <div key={comment.id}>
-                  <Paper style={{ padding: 20, margin: 20 }}>
+                  <Paper style={{ padding: isMobile ? '10px' : '20px', margin: isMobile ? '10px' : '20px' }}>
                     <Typography
-                      style={{ color: "black", paddingTop: 10 }}
+                      style={{
+                        color: "black",
+                        paddingTop: 10,
+                        fontSize: isMobile ? '14px' : 'inherit'
+                      }}
                       dangerouslySetInnerHTML={{ __html: comment.content }}
                     />
                     <h6>
-                      Posted by:-{" "}
-                      <span style={{ color: "red" }}>
+                      Posted by:{" "}
+                      <span style={{ color: "red", fontSize: isMobile ? '14px' : 'inherit' }}>
                         {comment.user ? comment.user.username : "Unknown"}
                       </span>
                     </h6>
@@ -128,7 +139,7 @@ const SingleBlog = () => {
                 </div>
               ))
             ) : (
-              <Typography variant="h6" style={{ textAlign: "center", color: "red" }}>
+              <Typography variant="h6" style={{ textAlign: "center", color: "red", fontSize: isMobile ? '16px' : 'inherit' }}>
                 No comments yet. Be the first to comment!
               </Typography>
             )}
@@ -136,7 +147,7 @@ const SingleBlog = () => {
 
           {token ? (
             <div>
-              <h2>Post a Comment</h2>
+              <h2 style={{ fontSize: isMobile ? '18px' : 'inherit' }}>Post a Comment</h2>
               <form onSubmit={handleSubmit}>
                 <CKEditor
                   editor={ClassicEditor}
@@ -150,7 +161,7 @@ const SingleBlog = () => {
             </div>
           ) : (
             <div style={{ textAlign: "center" }}>
-              <p>
+              <p style={{ fontSize: isMobile ? '14px' : 'inherit' }}>
                 Please <a href="/login">login</a> to post a comment.
               </p>
             </div>
