@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Base from "../components/Base";
-import { Paper, Typography, Divider, Button } from "@mui/material";
+import { Grid, Paper, Typography, Divider, Button, List, ListItemButton, ListItemText } from "@mui/material";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import useAxios from "../utils/useAxios";
@@ -20,6 +20,21 @@ const SingleBlog = () => {
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState("");
   const token = localStorage.getItem("authTokens");
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axios.get(baseUrl + '/blogsindex/'); // Update the API endpoint accordingly
+        setBlogs(response.data.slice(0, 6)); // Slice the response to get the first 6 blogs
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -69,33 +84,36 @@ const SingleBlog = () => {
   };
 
   return (
-    <div style={{ margin: 0, padding: 0 }}>
-      <Base>
-        <div style={{ padding: isMobile ? '10px' : '20px' }}>
+    <Base>
+      <Grid container style={{ margin: 0, padding: isMobile ? '10px' : '10px' }}>
+        <Grid item xs={12} md={9}>
           {post ? (
-            <div>
-              <Typography
-                variant={isMobile ? "h6" : "h4"}
-                style={{
-                  fontWeight: "bolder",
-                  textTransform: "uppercase",
-                  textAlign: "center",
-                  padding: 5,
-                }}
-              >
-                {post.title}
-              </Typography>
-              <Divider />
-              <Typography
-                style={{
-                  color: "black",
-                  paddingTop: 10,
-                  fontSize: isMobile ? '14px' : 'inherit'
-                }}
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
-              <Divider />
-              <Paper style={{ padding: isMobile ? '10px' : '20px' }}>
+            <>
+              <Paper className="bg-success" style={{ padding: isMobile ? '10px' : '0px', marginBottom: 20 }}>
+                <Typography
+                  variant={isMobile ? "h6" : "h4"}
+                  style={{
+                    fontWeight: "bolder",
+                    textTransform: "uppercase",
+                    textAlign: "center",
+                    padding: 5,
+                  }}
+                >
+                  {post.title}
+                </Typography>
+              </Paper>
+              <Paper style={{ padding: isMobile ? '10px' : '10px', marginBottom: 20 }}>
+                <Typography
+                  className="text-black"
+                  style={{
+                    paddingTop: 10,
+                    fontSize: isMobile ? '14px' : 'inherit'
+                  }}
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                />
+                <Divider />
+              </Paper>
+              <Paper style={{ padding: isMobile ? '10px' : '10px' }}>
                 <center>
                   <h5 className="text-danger p-2" style={{ fontSize: isMobile ? '16px' : 'inherit' }}>
                     <span className="text-primary">Blog written by: </span>
@@ -105,70 +123,80 @@ const SingleBlog = () => {
                   </h5>
                 </center>
               </Paper>
-            </div>
+            </>
           ) : (
             <Typography variant="h6" style={{ textAlign: "center", color: "red" }}>
               Loading...
             </Typography>
           )}
-        </div>
 
-        <div style={{ padding: isMobile ? '10px' : '20px' }}>
-          <h2 style={{ textAlign: "center", color: "green", fontSize: isMobile ? '18px' : 'inherit' }}>Comments:</h2>
-          <ul>
+          <div style={{ padding: isMobile ? '10px' : '10px' }}>
+            <Typography variant="h4" style={{ textAlign: "center", color: "green", fontSize: isMobile ? '18px' : 'inherit' }}>
+              Comments:
+            </Typography>
             {comments.length > 0 ? (
               comments.map((comment) => (
-                <div key={comment.id}>
-                  <Paper style={{ padding: isMobile ? '10px' : '20px', margin: isMobile ? '10px' : '20px' }}>
-                    <Typography
-                      style={{
-                        color: "black",
-                        paddingTop: 10,
-                        fontSize: isMobile ? '14px' : 'inherit'
-                      }}
-                      dangerouslySetInnerHTML={{ __html: comment.content }}
-                    />
-                    <h6>
-                      Posted by:{" "}
-                      <span style={{ color: "red", fontSize: isMobile ? '14px' : 'inherit' }}>
-                        {comment.user ? comment.user.username : "Unknown"}
-                      </span>
-                    </h6>
-                  </Paper>
+                <Paper key={comment.id} style={{ padding: isMobile ? '10px' : '20px', marginBottom: 20 }}>
+                  <Typography
+                    style={{
+                      color: "black",
+                      paddingTop: 10,
+                      fontSize: isMobile ? '14px' : 'inherit'
+                    }}
+                    dangerouslySetInnerHTML={{ __html: comment.content }}
+                  />
+                  <Typography className="text-danger" variant="subtitle2" style={{ marginTop: 10 }}>
+                    Posted by: {comment.user ? comment.user.username : "Unknown"}
+                  </Typography>
                   <Divider />
-                </div>
+                </Paper>
               ))
             ) : (
               <Typography variant="h6" style={{ textAlign: "center", color: "red", fontSize: isMobile ? '16px' : 'inherit' }}>
                 No comments yet. Be the first to comment!
               </Typography>
             )}
-          </ul>
 
-          {token ? (
-            <div>
-              <h2 style={{ fontSize: isMobile ? '18px' : 'inherit' }}>Post a Comment</h2>
-              <form onSubmit={handleSubmit}>
-                <CKEditor
-                  editor={ClassicEditor}
-                  data={content}
-                  onChange={handleChange}
-                />
-                <Button type="submit" variant="contained" color="primary">
-                  Post Comment
-                </Button>
-              </form>
-            </div>
-          ) : (
-            <div style={{ textAlign: "center" }}>
-              <p style={{ fontSize: isMobile ? '14px' : 'inherit' }}>
+            {token ? (
+              <div style={{ marginTop: 20 }}>
+                <Typography variant="h4" style={{ fontSize: isMobile ? '18px' : 'inherit' }}>
+                  Post a Comment
+                </Typography>
+                <form onSubmit={handleSubmit}>
+                  <CKEditor
+                    editor={ClassicEditor}
+                    data={content}
+                    onChange={handleChange}
+                  />
+                  <Button type="submit" variant="contained" color="primary" style={{ marginTop: 10 }}>
+                    Post Comment
+                  </Button>
+                </form>
+              </div>
+            ) : (
+              <Typography style={{ textAlign: "center", marginTop: 20 }}>
                 Please <a href="/login">login</a> to post a comment.
-              </p>
-            </div>
-          )}
-        </div>
-      </Base>
-    </div>
+              </Typography>
+            )}
+          </div>
+        </Grid>
+        <Grid item xs={12} md={3}>
+          <Divider />
+          <Typography className="text-center" style={{ position: 'sticky', color: 'tomato', fontWeight: 'bold', fontSize: 20, padding: 10 }}>Latest Blogs</Typography>
+          <Divider />
+          <List style={{ top: 20, marginTop: 10, position: 'sticky' }}>
+            {blogs.map((blog) => (
+              <>
+                <ListItemButton key={blog.url} href={`/blogs/${blog.url}/`}>
+                  <ListItemText primary={blog.title} />
+                </ListItemButton>
+                <Divider />
+              </>
+            ))}
+          </List>
+        </Grid>
+      </Grid>
+    </Base>
   );
 };
 
