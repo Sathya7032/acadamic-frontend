@@ -163,17 +163,10 @@ export default function Index({ placeholder }) {
                         </div>
                     </div>
                 </div>
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6919135852803356"
-                    crossorigin="anonymous"></script>
-                <ins class="adsbygoogle"
-                    style={{ display: 'block' }}
-                    data-ad-client="ca-pub-6919135852803356"
-                    data-ad-slot="4480234004"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({ });
-                </script>
+                
+
+                <script async="async" data-cfasync="false" src="//pl24058579.highratecpm.com/c898e8e2f87310227ccbfb5d154642f3/invoke.js"></script>
+                <div id="container-c898e8e2f87310227ccbfb5d154642f3"></div>
 
 
                 <div className="container-fluid py-5">
@@ -199,16 +192,16 @@ export default function Index({ placeholder }) {
                     <div className="container py-5">
                         <div className="row align-items-center">
 
-                            <div className="col-lg-5" style={{ justifyContent: 'center',alignContent:'center' }}>
+                            <div className="col-lg-5" style={{ justifyContent: 'center', alignContent: 'center' }}>
                                 <div className="text-left mb-4">
                                     <h5 className="text-primary text-uppercase mb-3 text-center" style={{ letterSpacing: '5px' }}>Our other Services</h5>
                                     <h1 className='text-center'>Professional Website Solutions for Portfolios & Small Businesses</h1>
                                 </div>
                                 <p>Transform your online presence with custom-designed websites that reflect your brand and drive growth. We create visually stunning portfolio websites and dynamic small business sites with features like responsive design, e-commerce integration, and SEO optimization. Our process includes thorough consultation, collaborative design, rigorous testing, and ongoing support to ensure your site remains effective and up-to-date.</p>
-                                <center><a href="/contact"  className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Contact Now</a></center>
+                                <center><a href="/contact" className="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Contact Now</a></center>
                             </div>
                             <div className="col-lg-7">
-                                <img className="img-fluid rounded mb-4 mb-lg-0" style={{height:'500px'}} src={blog3} alt="About Us" />
+                                <img className="img-fluid rounded mb-4 mb-lg-0" style={{ height: '500px' }} src={blog3} alt="About Us" />
                             </div>
                         </div>
                     </div>
