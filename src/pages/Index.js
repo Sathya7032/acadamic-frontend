@@ -21,6 +21,7 @@ import Swal from "sweetalert2";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from 'axios'
+import AddComponent from '../AddComponent'
 
 
 export default function Index({ placeholder }) {
@@ -165,10 +166,8 @@ export default function Index({ placeholder }) {
                 </div>
                 
 
-                <script async="async" data-cfasync="false" src="//pl24058579.highratecpm.com/c898e8e2f87310227ccbfb5d154642f3/invoke.js"></script>
-                <div id="container-c898e8e2f87310227ccbfb5d154642f3"></div>
-
-
+                <AddComponent/>
+                
                 <div className="container-fluid py-5">
                     <div className="container py-5">
                         <div className="row align-items-center">
