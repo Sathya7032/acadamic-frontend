@@ -28,7 +28,7 @@ import ChangePassword from "./user/ChangePassword";
 import PasswordReset from "./user/PasswordReset";
 import PasswordResetConfirm from "./user/PasswordResetConfirm";
 import { Analytics } from "@vercel/analytics/react"
-
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 function App() {
   return (
@@ -37,6 +37,7 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Routes>
+            <SpeedInsights/>
             <Route element={<Index />} path="/" />
             <Route element={<Contact />} path="/contact" />
             <Route element={<Tutorials />} path="/tutorials" />
