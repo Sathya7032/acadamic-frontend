@@ -51,6 +51,9 @@ const Shorts = () => {
                 </div>
             </div>
 
+            <script async="async" data-cfasync="false" src="//pl24058579.highratecpm.com/c898e8e2f87310227ccbfb5d154642f3/invoke.js"></script>
+            <div id="container-c898e8e2f87310227ccbfb5d154642f3"></div>
+
             <div className="container mt-4">
                 <h1 className="mb-4">Video Library</h1>
                 {/* Category Selector */}
@@ -69,7 +72,7 @@ const Shorts = () => {
                         ))}
                     </select>
                 </div>
-                
+
                 {/* Video Display */}
                 <div className="shorts-video-container">
                     {videos.length > 0 ? (
@@ -77,11 +80,11 @@ const Shorts = () => {
                             {videos.map(video => (
                                 <div key={video.id} className="col">
                                     <div className="card h-100">
-                                        <ReactPlayer 
-                                            url={video.video_url} 
+                                        <ReactPlayer
+                                            url={video.video_url}
                                             playing={false} // Ensure videos do not play automatically
-                                            controls 
-                                            width="100%" 
+                                            controls
+                                            width="100%"
                                         />
                                         <div className="card-body">
                                             <h5 className="card-title">{video.title}</h5>

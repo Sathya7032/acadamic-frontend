@@ -34,17 +34,20 @@ const Languages = () => {
                         </div>
                     </div>
 
+                    <script async="async" data-cfasync="false" src="//pl24058579.highratecpm.com/c898e8e2f87310227ccbfb5d154642f3/invoke.js"></script>
+                    <div id="container-c898e8e2f87310227ccbfb5d154642f3"></div>
+
                     <div class="container-fluid py-6">
                         <div class="container py-6">
                             <div class="row">
 
                                 {lang.map((langs, index) => (
-                                    <div key={langs.id} className="col-lg-5 col-md-4 mb-2 " style={{ border: 'black solid 1px', margin: 1 , backgroundColor: '#DCDCDC', borderRadius: 15, textTransform: 'uppercase' }}>
+                                    <div key={langs.id} className="col-lg-5 col-md-4 mb-2 " style={{ border: 'black solid 1px', margin: 1, backgroundColor: '#DCDCDC', borderRadius: 15, textTransform: 'uppercase' }}>
                                         <div className="blog-item m-3">
                                             <div className="blog-item-content p-3">
                                                 <h3 className="mt-3 mb-3">
                                                     <a href={`/topics/${langs.url}/`}>
-                                                        {index+1}.  {langs.language}
+                                                        {index + 1}.  {langs.language}
                                                     </a>
                                                 </h3>
                                                 <a

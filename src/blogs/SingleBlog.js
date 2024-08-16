@@ -87,6 +87,8 @@ const SingleBlog = () => {
     <Base>
       <Grid container style={{ margin: 0, padding: isMobile ? '10px' : '10px' }}>
         <Grid item xs={12} md={9}>
+          <script async="async" data-cfasync="false" src="//pl24058579.highratecpm.com/c898e8e2f87310227ccbfb5d154642f3/invoke.js"></script>
+          <div id="container-c898e8e2f87310227ccbfb5d154642f3"></div>
           {post ? (
             <>
               <Paper className="bg-success" style={{ padding: isMobile ? '10px' : '0px', marginBottom: 20 }}>
