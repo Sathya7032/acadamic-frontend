@@ -88,7 +88,7 @@ const SingleBlog = () => {
     <Base>
       <Grid container style={{ margin: 0, padding: isMobile ? '10px' : '10px' }}>
         <Grid item xs={12} md={9}>
-          <AddComponent/>
+          
           {post ? (
             <>
               <Paper className="bg-success" style={{ padding: isMobile ? '10px' : '0px', marginBottom: 20 }}>

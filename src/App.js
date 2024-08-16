@@ -37,7 +37,6 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-            <SpeedInsights/>
             <Route element={<Index />} path="/" />
             <Route element={<Contact />} path="/contact" />
             <Route element={<Tutorials />} path="/tutorials" />

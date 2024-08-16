@@ -3,6 +3,7 @@ import Base from "../components/Base";
 import axios from "axios";
 import moment from "moment";
 import { Divider } from "@mui/material";
+import AddComponent from "../AddComponent";
 
 const Blogs = () => {
   const baseUrl = "https://acadamicfolios.pythonanywhere.com/app";
@@ -144,6 +145,10 @@ const Blogs = () => {
               Next
             </button>
           </div>
+        </div>
+
+        <div className="container">
+          <AddComponent />
         </div>
       </Base>
     </div>

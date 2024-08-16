@@ -3,6 +3,7 @@ import axios from 'axios';
 import Base from '../components/Base'; // Assuming Base is your layout component
 import '../styles/css/shorts.css';
 import ReactPlayer from 'react-player';
+import AddComponent from '../AddComponent';
 
 const Shorts = () => {
     const [categories, setCategories] = useState([]);
@@ -51,8 +52,6 @@ const Shorts = () => {
                 </div>
             </div>
 
-            <script async="async" data-cfasync="false" src="//pl24058579.highratecpm.com/c898e8e2f87310227ccbfb5d154642f3/invoke.js"></script>
-            <div id="container-c898e8e2f87310227ccbfb5d154642f3"></div>
 
             <div className="container mt-4">
                 <h1 className="mb-4">Video Library</h1>
@@ -98,6 +97,9 @@ const Shorts = () => {
                         <div>No videos available in this category.</div>
                     )}
                 </div>
+            </div>
+            <div className='container-sm'>
+                <AddComponent />
             </div>
         </Base>
     );

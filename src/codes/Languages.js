@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Base from "../components/Base";
 import axios from "axios";
+import AddComponent from "../AddComponent";
 
 
 const Languages = () => {
@@ -34,9 +35,6 @@ const Languages = () => {
                         </div>
                     </div>
 
-                    <script async="async" data-cfasync="false" src="//pl24058579.highratecpm.com/c898e8e2f87310227ccbfb5d154642f3/invoke.js"></script>
-                    <div id="container-c898e8e2f87310227ccbfb5d154642f3"></div>
-
                     <div class="container-fluid py-6">
                         <div class="container py-6">
                             <div class="row">
@@ -64,7 +62,9 @@ const Languages = () => {
                             </div>
                         </div>
                     </div>
-
+                </div>
+                <div className='container-sm'>
+                    <AddComponent />
                 </div>
             </Base>
         </div>
